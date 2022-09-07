@@ -28,7 +28,8 @@ else:
 MANAGERS = ADMINS
 
 # is this the master Helios web site?
-MASTER_HELIOS = (get_from_env('MASTER_HELIOS', '0') == '1')
+#MASTER_HELIOS = (get_from_env('MASTER_HELIOS', '0') == '1')
+MASTER_HELIOS = (get_from_env('MASTER_HELIOS', '1') == '1')
 
 # show ability to log in? (for example, if the site is mostly used by voters)
 # if turned off, the admin will need to know to go to /auth/login manually
@@ -62,6 +63,7 @@ TIME_ZONE = 'America/Los_Angeles'
 # Language code for this installation. All choices can be found here:
 # http://www.i18nguy.com/unicode/language-identifiers.html
 LANGUAGE_CODE = 'en-us'
+#LANGUAGE_CODE = 'cn-zh'
 
 SITE_ID = 1
 
@@ -90,7 +92,9 @@ SECRET_KEY = get_from_env('SECRET_KEY', 'replaceme')
 # If in production, you got a bad request (400) error
 #More info: https://docs.djangoproject.com/en/1.7/ref/settings/#allowed-hosts (same for 1.6)
 
-ALLOWED_HOSTS = get_from_env('ALLOWED_HOSTS', 'localhost').split(",")
+#ALLOWED_HOSTS = get_from_env('ALLOWED_HOSTS', 'localhost').split(",")
+#ALLOWED_HOSTS = get_from_env('ALLOWED_HOSTS', '192.168.0.186').split(",")
+ALLOWED_HOSTS = ['*']
 
 # Secure Stuff
 if get_from_env('SSL', '0') == '1':
@@ -189,7 +193,10 @@ LOGOUT_ON_CONFIRMATION = True
 
 # The two hosts are here so the main site can be over plain HTTP
 # while the voting URLs are served over SSL.
-URL_HOST = get_from_env("URL_HOST", "http://localhost:8000").rstrip("/")
+#URL_HOST = get_from_env("URL_HOST", "http://localhost:8000").rstrip("/")
+#URL_HOST = get_from_env("URL_HOST", "http://119.13.86.227:8000").rstrip("/")
+URL_HOST = get_from_env("URL_HOST", "http://0.0.0.0:8000").rstrip("/")
+
 
 # IMPORTANT: you should not change this setting once you've created
 # elections, as your elections' cast_url will then be incorrect.
@@ -221,7 +228,7 @@ HELIOS_PRIVATE_DEFAULT = False
 # authentication systems enabled
 # AUTH_ENABLED_SYSTEMS = ['password','facebook','twitter', 'google', 'yahoo']
 AUTH_ENABLED_SYSTEMS = get_from_env('AUTH_ENABLED_SYSTEMS',
-                                    get_from_env('AUTH_ENABLED_AUTH_SYSTEMS', 'password,google,facebook')
+                                    get_from_env('AUTH_ENABLED_AUTH_SYSTEMS', 'password,google,facebook,github,yahoo,twitter')
                                     ).split(",")
 AUTH_DEFAULT_SYSTEM = get_from_env('AUTH_DEFAULT_SYSTEM', get_from_env('AUTH_DEFAULT_AUTH_SYSTEM', None))
 
@@ -258,10 +265,13 @@ CLEVER_CLIENT_ID = get_from_env('CLEVER_CLIENT_ID', "")
 CLEVER_CLIENT_SECRET = get_from_env('CLEVER_CLIENT_SECRET', "")
 
 # GitHub
-GH_CLIENT_ID = get_from_env('GH_CLIENT_ID', '')
-GH_CLIENT_SECRET = get_from_env('GH_CLIENT_SECRET', '')
+GH_CLIENT_ID = get_from_env('GH_CLIENT_ID', '173d39e0226116ee8b32')
+#GH_CLIENT_ID = get_from_env('GH_CLIENT_ID', '')
+GH_CLIENT_SECRET = get_from_env('GH_CLIENT_SECRET', '7d8bf30bc01d09fb3d0a96a7951cba79b3990e8c')
+#GH_CLIENT_SECRET = get_from_env('GH_CLIENT_SECRET', '')
 
 # email server
+#EMAIL_HOST = get_from_env('EMAIL_HOST', 'localhost')
 EMAIL_HOST = get_from_env('EMAIL_HOST', 'localhost')
 EMAIL_PORT = int(get_from_env('EMAIL_PORT', "2525"))
 EMAIL_HOST_USER = get_from_env('EMAIL_HOST_USER', '')
@@ -284,6 +294,8 @@ logging.basicConfig(
 
 # set up celery
 CELERY_BROKER_URL = get_from_env('CELERY_BROKER_URL', 'amqp://localhost')
+#CELERY_BROKER_URL = get_from_env('CELERY_BROKER_URL', 'amqp://119.13.86.227')
+
 if TESTING:
     CELERY_TASK_ALWAYS_EAGER = True
 #database_url = DATABASES['default']

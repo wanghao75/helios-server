@@ -1,0 +1,23 @@
+#!/bin/bash
+pwd
+/etc/init.d/postgresql start
+/etc/init.d/rabbitmq-server start
+cd /app/helios-server
+python3.6 -m venv venv 
+source /app/helios-server/venv/bin/activate
+python3.6 -m pip install -r requirements.txt --quiet
+python3.6 -m pip install uwsgi --quiet
+
+/usr/bin/expect<<EOF
+spawn sh -c "sudo -u postgres psql"
+expect "postgres#="
+send "CREATE ROLE root superuser login;\r"
+expect "postgres#="
+send "exit;\r"
+expect EOF
+EOF
+
+./reset.sh
+nohup celery -A helios worker -l INFO>dev/null &
+#python manage.py runserver 0.0.0.0:8000
+uwsgi --ini uwsgi.ini
