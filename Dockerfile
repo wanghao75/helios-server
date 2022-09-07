@@ -16,7 +16,7 @@ RUN apt-get update \
 	libpq-dev \
         tcl \
         expect \
-        python-celery-common \
+        python-celery-common
 
 # ENV TIME_ZONE Asia/Shanghai
 COPY helios-server/start_service.sh /usr/bin/start_service.sh
