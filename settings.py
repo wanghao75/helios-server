@@ -265,9 +265,9 @@ CLEVER_CLIENT_ID = get_from_env('CLEVER_CLIENT_ID', "")
 CLEVER_CLIENT_SECRET = get_from_env('CLEVER_CLIENT_SECRET', "")
 
 # GitHub
-GH_CLIENT_ID = get_from_env('GH_CLIENT_ID', '173d39e0226116ee8b32')
+GH_CLIENT_ID = get_from_env('GH_CLIENT_ID', '')
 #GH_CLIENT_ID = get_from_env('GH_CLIENT_ID', '')
-GH_CLIENT_SECRET = get_from_env('GH_CLIENT_SECRET', '7d8bf30bc01d09fb3d0a96a7951cba79b3990e8c')
+GH_CLIENT_SECRET = get_from_env('GH_CLIENT_SECRET', '')
 #GH_CLIENT_SECRET = get_from_env('GH_CLIENT_SECRET', '')
 
 # email server
