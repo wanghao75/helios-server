@@ -14,7 +14,7 @@ expect "postgres#="
 send "CREATE ROLE root superuser login;\r"
 expect "postgres#="
 send "exit;\r"
-expect EOF
+expect eof
 EOF
 
 ./reset.sh
