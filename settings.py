@@ -193,10 +193,10 @@ LOGOUT_ON_CONFIRMATION = True
 
 # The two hosts are here so the main site can be over plain HTTP
 # while the voting URLs are served over SSL.
-#URL_HOST = get_from_env("URL_HOST", "http://localhost:8000").rstrip("/")
+URL_HOST = get_from_env("URL_HOST", "http://localhost:8000").rstrip("/")
 #URL_HOST = get_from_env("URL_HOST", "http://119.13.86.227:8000").rstrip("/")
 #URL_HOST = get_from_env("URL_HOST", "http://0.0.0.0:8000").rstrip("/")
-URL_HOST = get_from_env("URL_HOST", "https://helios-voting.test.osinfra.cn").rstrip("/")
+#URL_HOST = get_from_env("URL_HOST", "https://helios-voting.test.osinfra.cn").rstrip("/")
 
 # IMPORTANT: you should not change this setting once you've created
 # elections, as your elections' cast_url will then be incorrect.
