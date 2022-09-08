@@ -18,7 +18,6 @@ RUN apt-get update \
         expect \
         python-celery-common
 
-# ENV TIME_ZONE Asia/Shanghai
 COPY helios-server/start_service.sh /usr/bin/start_service.sh
 RUN chmod +x /usr/bin/start_service.sh 
 EXPOSE 8000
