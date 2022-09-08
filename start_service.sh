@@ -18,6 +18,5 @@ expect EOF
 EOF
 
 ./reset.sh
-nohup celery -A helios worker -l INFO>dev/null &
-#python manage.py runserver 0.0.0.0:8000
+nohup celery -A helios worker -l INFO>celery.log &
 uwsgi --ini uwsgi.ini
