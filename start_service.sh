@@ -17,6 +17,6 @@ send "exit;\r"
 expect eof
 EOF
 
-./reset.sh
+sh reset.sh
 nohup celery -A helios worker -l INFO>celery.log &
 uwsgi --ini uwsgi.ini
