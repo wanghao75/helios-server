@@ -58,18 +58,20 @@ if get_from_env('DATABASE_URL', None):
 # although not all choices may be available on all operating systems.
 # If running in a Windows environment this must be set to the same as your
 # system time zone.
-TIME_ZONE = 'America/Los_Angeles'
+#TIME_ZONE = 'America/Los_Angeles'
+TIME_ZONE = 'Asia/ShangHai'
 
 # Language code for this installation. All choices can be found here:
 # http://www.i18nguy.com/unicode/language-identifiers.html
-LANGUAGE_CODE = 'en-us'
-#LANGUAGE_CODE = 'cn-zh'
+#LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'zh-hans'
 
 SITE_ID = 1
 
 # If you set this to False, Django will make some optimizations so as not
 # to load the internationalization machinery.
 USE_I18N = True
+USE_TZ = False
 
 # Absolute path to the directory that holds media.
 # Example: "/home/media/media.lawrence.com/"
@@ -194,8 +196,8 @@ LOGOUT_ON_CONFIRMATION = True
 # The two hosts are here so the main site can be over plain HTTP
 # while the voting URLs are served over SSL.
 #URL_HOST = get_from_env("URL_HOST", "http://localhost:8000").rstrip("/")
-URL_HOST = get_from_env("URL_HOST", "https://helios-voting.osinfra.cn").rstrip("/")
-#URL_HOST = get_from_env("URL_HOST", "https://helios-voting.test.osinfra.cn").rstrip("/")
+#URL_HOST = get_from_env("URL_HOST", "https://helios-voting.osinfra.cn").rstrip("/")
+URL_HOST = get_from_env("URL_HOST", "https://helios-voting.test.osinfra.cn").rstrip("/")
 
 # IMPORTANT: you should not change this setting once you've created
 # elections, as your elections' cast_url will then be incorrect.
