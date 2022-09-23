@@ -63,16 +63,14 @@ TIME_ZONE = 'America/Los_Angeles'
 
 # Language code for this installation. All choices can be found here:
 # http://www.i18nguy.com/unicode/language-identifiers.html
-#LANGUAGE_CODE = 'en-us'
-LANGUAGE_CODE = 'zh-hans'
+LANGUAGE_CODE = 'en-us'
+#LANGUAGE_CODE = 'zh-hans'
 
 SITE_ID = 1
 
 # If you set this to False, Django will make some optimizations so as not
 # to load the internationalization machinery.
 USE_I18N = True
-USE_L10N = True
-USE_TZ = True
 
 # Absolute path to the directory that holds media.
 # Example: "/home/media/media.lawrence.com/"
@@ -187,8 +185,8 @@ VOTER_UPLOAD_REL_PATH = "voters/%Y/%m/%d"
 
 
 # Change your email settings
-DEFAULT_FROM_EMAIL = get_from_env('DEFAULT_FROM_EMAIL', 'ben@adida.net')
-DEFAULT_FROM_NAME = get_from_env('DEFAULT_FROM_NAME', 'Ben for Helios')
+DEFAULT_FROM_EMAIL = get_from_env('DEFAULT_FROM_EMAIL', 'shalldows@163.com')
+DEFAULT_FROM_NAME = get_from_env('DEFAULT_FROM_NAME', 'bot for Helios')
 SERVER_EMAIL = '%s <%s>' % (DEFAULT_FROM_NAME, DEFAULT_FROM_EMAIL)
 
 LOGIN_URL = '/auth/'
@@ -230,7 +228,7 @@ HELIOS_PRIVATE_DEFAULT = False
 # authentication systems enabled
 # AUTH_ENABLED_SYSTEMS = ['password','facebook','twitter', 'google', 'yahoo']
 AUTH_ENABLED_SYSTEMS = get_from_env('AUTH_ENABLED_SYSTEMS',
-                                    get_from_env('AUTH_ENABLED_AUTH_SYSTEMS', 'password,google,facebook,github,yahoo,twitter')
+                                    get_from_env('AUTH_ENABLED_AUTH_SYSTEMS', 'password,google,facebook,github,yahoo,twitter, gitee')
                                     ).split(",")
 AUTH_DEFAULT_SYSTEM = get_from_env('AUTH_DEFAULT_SYSTEM', get_from_env('AUTH_DEFAULT_AUTH_SYSTEM', None))
 
@@ -272,9 +270,13 @@ GH_CLIENT_ID = get_from_env('GH_CLIENT_ID', '')
 GH_CLIENT_SECRET = get_from_env('GH_CLIENT_SECRET', '')
 #GH_CLIENT_SECRET = get_from_env('GH_CLIENT_SECRET', '')
 
+# Gitee
+GITEE_CLIENT_ID = get_from_env('GITEE_CLIENT_ID', '')
+GITEE_CLIENT_SECRET = get_from_env('GITEE_CLIENT_SECRET', '')
+
 # email server
 #EMAIL_HOST = get_from_env('EMAIL_HOST', 'localhost')
-EMAIL_HOST = get_from_env('EMAIL_HOST', 'localhost')
+EMAIL_HOST = get_from_env('EMAIL_HOST', 'smtp.163.com')
 EMAIL_PORT = int(get_from_env('EMAIL_PORT', "2525"))
 EMAIL_HOST_USER = get_from_env('EMAIL_HOST_USER', '')
 EMAIL_HOST_PASSWORD = get_from_env('EMAIL_HOST_PASSWORD', '')

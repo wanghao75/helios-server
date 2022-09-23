@@ -16,16 +16,16 @@
 <br />
 {% endif %}
 
-You are logged in as <u>{{voter.display_html_big|safe}}</u><br /><br />
+登录为 <u>{{voter.display_html_big|safe}}</u><br /><br />
 
-    <button type="submit" class="large">CAST this ballot</button>
-    <span style="font-size:0.8em;"><br />You can cast as many ballots as you want.<br />Only the last one counts.</span>
+    <button type="submit" class="large">提交此选票</button>
+    <span style="font-size:0.8em;"><br />你可以进行任意次数的投票.<br />仅最后一次会被计入.</span>
 </form>
 
 <p>
-    <button class="tiny" onclick="if (confirm('Are you sure you want to clear this ballot and NOT cast it?')) {document.location='{% url "election@view" election.uuid %}';}">cancel</button><br />
-    <span style="font-size:0.8em;">If you cancel now, your ballot will <em>NOT</em> be recorded.<br />
-    You can start the voting process over again, of course.</span>
+    <button class="tiny" onclick="if (confirm('Are you sure you want to clear this ballot and NOT cast it?')) {document.location='{% url "election@view" election.uuid %}';}">取消</button><br />
+    <span style="font-size:0.8em;">如果你点击取消，那么你的选票将不会被记录.<br />
+    当然，你可以重新开始投递选票.</span>
 </p>
 
 <!-- for now, for CSRF protection, no auto-submit just yet (benadida) -->
@@ -34,11 +34,11 @@ You are logged in as <u>{{voter.display_html_big|safe}}</u><br /><br />
 </div>
   {% else %}
 <p style="font-size:1.4em;">
-  voting has stopped, sorry.
+  抱歉，选举已经结束.
 </p>
   {% endif %}
 {% else %}
 <p style="font-size:1.4em;">
-  voting has not yet begun, sorry.
+  抱歉，选举暂未开始.
 </p>
 {% endif %}

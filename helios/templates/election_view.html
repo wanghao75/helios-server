@@ -5,7 +5,7 @@
   <h3 class="title">{{ election.name }}
 {% if admin_p %}
 {% if not election.frozen_at %}
-<small><a class="small button" href="{% url "election@edit" election.uuid %}">edit</a></small>
+<small><a class="small button" href="{% url "election@edit" election.uuid %}">编辑</a></small>
 {% endif %}
 {% endif %}</h3>
 <p style="padding-top:0px; margin-top:0px">
@@ -14,21 +14,21 @@
 [archived]
 {% endif %}
 {% if admin_p %}
-&nbsp;{% if election.is_archived %}<a class="small button" href="{% url "election@archive" election_uuid=election.uuid %}?archive_p=0">unarchive it</a>{% else %}<a class="small button" href="{% url "election@archive" election_uuid=election.uuid %}?archive_p=1">archive it</a>{% endif %}
-<a class="small button" onclick="return window.confirm('Are you sure you want to copy this election?');" href="{% url "election@copy" election_uuid=election.uuid %}">copy</a>
+&nbsp;{% if election.is_archived %}<a class="small button" href="{% url "election@archive" election_uuid=election.uuid %}?archive_p=0">不归档</a>{% else %}<a class="small button" href="{% url "election@archive" election_uuid=election.uuid %}?archive_p=1">归档</a>{% endif %}
+<a class="small button" onclick="return window.confirm('Are you sure you want to copy this election?');" href="{% url "election@copy" election_uuid=election.uuid %}">拷贝</a>
 {% endif %}
 <br />
 {% if admin_p %}
 {% if not election.private_p %}
 {% if election.featured_p %}
-this {{election.election_type}} is featured on the front page.
+    {{election.election_type}} 在首页上有.
 {% if can_feature_p %}
-[<a href="{% url "election@set-featured" election.uuid %}?featured_p=0">unfeature it</a>]
+[<a href="{% url "election@set-featured" election.uuid %}?featured_p=0">取消显示</a>]
 {% endif %}
 {% else %}
-this {{election.election_type}} is <u>not</u> featured on the front page.
+    {{election.election_type}} 在首页上没有.
 {% if can_feature_p %}
-[<a href="{% url "election@set-featured" election.uuid %}?featured_p=1">feature it</a>]
+[<a href="{% url "election@set-featured" election.uuid %}?featured_p=1">显示</a>]
 {% endif %}
 {% endif %}
 {% endif %}
@@ -47,33 +47,33 @@ this {{election.election_type}} is <u>not</u> featured on the front page.
 </div>
 
 <p>
-{% if election.help_email and admin_p%}Help Email Address: {{election.help_email}}<br />{% endif %}
-{% if election.voting_start_at %}Voting start at {{election.voting_start_at}}<br />{% endif %}
-{% if election.voting_end_at %}Voting end at {{election.voting_end_at}}<br />{% endif %}
+{% if election.help_email and admin_p%}帮助邮件地址: {{election.help_email}}<br />{% endif %}
+{% if election.voting_start_at %}选举在 {{election.voting_start_at}}开始<br />{% endif %}
+{% if election.voting_end_at %}选举在 {{election.voting_end_at}}结束<br />{% endif %}
 </p>
 
 {% if election.election_info_url %}
-<p style="font-size:1.5em;">[<a target="_blank" href="{{election.election_info_url}}" rel="noopener noreferrer">download candidate bios &amp; statements</a>]</p>
+<p style="font-size:1.5em;">[<a target="_blank" href="{{election.election_info_url}}" rel="noopener noreferrer">下载候选人简历以及陈述</a>]</p>
 {% endif %}
 
 <p align="center" style="font-size: 1.5em;">
-<a href="{% url "election@questions" election.uuid %}">questions ({% if election.questions %}{{election.questions|length}}{% else %}0{% endif %})</a>
+<a href="{% url "election@questions" election.uuid %}">选举项 ({% if election.questions %}{{election.questions|length}}{% else %}0{% endif %})</a>
 &nbsp;&nbsp;|&nbsp;&nbsp;
-<a href="{% url "election@voters@list-pretty" election.uuid %}">voters &amp; ballots</a>
+<a href="{% url "election@voters@list-pretty" election.uuid %}">选民 &amp; 选票</a>
 &nbsp;&nbsp;|&nbsp;&nbsp;
-<a href="{% url "election@trustees@view" election.uuid %}">trustees ({{trustees|length}})</a>
+<a href="{% url "election@trustees@view" election.uuid %}">受托人 ({{trustees|length}})</a>
 </p>
 
 {% if admin_p %}
 {% if election.frozen_p %}
 <div style="background: lightyellow; padding:5px; padding-left: 10px; margin-top: 15px; border: 1px solid #aaa; width: 720px;" class="round">
-<a href="#" onclick="$('#badgebody').slideToggle(250);">Embed an Election Badge</a>
+<a href="#" onclick="$('#badgebody').slideToggle(250);">嵌入选举徽章</a>
 <div id="badgebody" style="display:none;">
 <br />
 <form action="#">
 <textarea cols="90" rows="4" wrap="soft">&lt;iframe src="{{election_badge_url}}" frameborder="0" style="border: 1px solid black" height="75" width="200"&gt;
 &lt;/iframe&gt;</textarea><br />
-<p style="font-size:0.8em;">adding this HTML to your site displays a thin banner with direct links to voting.</p>
+<p style="font-size:0.8em;">将此HTML添加到您的站点会显示一个带有投票直接链接的细横幅.</p>
 </form>
 </div>
 </div>
@@ -85,7 +85,7 @@ this {{election.election_type}} is <u>not</u> featured on the front page.
 <!-- election complete, no next step -->
 
 {% else %}
-<b>Next Step:</b>
+<b>下一步:</b>
 <span style="font-size: 1.3em;">
 {% if not election.frozen_at %}
 {% if election.issues_before_freeze %}
@@ -93,13 +93,13 @@ this {{election.election_type}} is <u>not</u> featured on the front page.
 {{issue.action}}{% if forloop.last %}{% else %}, and{% endif %}<br />
 {% endfor %}
 {% else %}
-<a href="{% url "election@freeze" election.uuid %}">freeze ballot and open election.</a>
+<a href="{% url "election@freeze" election.uuid %}">冻结选票并开始选举.</a>
 <br />
 {% if election.voting_starts_at %}
-once you do this, the election will be ready for voting and will open automatically<br />
-at {{election.voting_starts_at}}, as per your settings.
+一旦你这样做了，选举就可以投票了，并且会于<br />
+ {{election.voting_starts_at}}自动开始.
 {% else %}
-once you do this, the election will be immediately open for voting.
+一旦你这样做了，选举会马上开启.
 {% endif %}
 {% endif %}
 
@@ -107,37 +107,37 @@ once you do this, the election will be immediately open for voting.
 
 {% if not election.encrypted_tally %}
 {% if election.tallying_started_at %}
-Tally computation is under way.<br />
-Reload this page in a couple of minutes.
+计数计算正在进行中.<br />
+稍后请重新刷新页面.
 {% else %}
-<a href="{% url "election@compute-tally" election.uuid %}">compute encrypted tally</a><br />
-The encrypted votes will be combined into an encrypted tally. Once this is done,<br />
-trustees will be asked to provide their share of the decryption.
+<a href="{% url "election@compute-tally" election.uuid %}">计算加密计数</a><br />
+加密的选票将合并为加密的计票，完成后，<br/>
+受托人将被要求提供他们的解密份额.
 {% endif %}
 {% else %}
 
 {% if election.result %}
-<a href="{% url "election@release-result" election.uuid %}">release result</a><br />
-The result displayed below is visible only to you.<br />
-Once you release the result, it will be visible to everyone.
+<a href="{% url "election@release-result" election.uuid %}">公布结果</a><br />
+如下展示的结果当前只对你可见.<br />
+一旦你公布结果，那么对任何人都可见.
 {% else %}
 
 {% if election.ready_for_decryption_combination %}
 <a href="{% url "election@combine-decryptions" election.uuid %}">
 {% if election.num_trustees == 1 %}
-compute results
+计算结果
 {% else %}
-combine trustee decryptions and compute results
+合并受托人解密和计算结果
 {% endif %}
 </a><br />
 {% if election.num_trustees == 1 %}
-The result will be computed and shown to you, the administrator, only.
+结果将被计算并仅显示给管理员.
 {% else %}
-The decryption shares from the trustees will be combined and the tally computed.<br />
-Once you do this, the tally will visible to you, the administrator, only.
+受托人的解密份额将合并并计算总数<br/>
+一旦您这样做，计数将只对你（管理员）可见。
 {% endif %}
 {% else %}
-<a href="{% url "election@trustees@view" election.uuid %}">trustees (for decryption)</a>
+<a href="{% url "election@trustees@view" election.uuid %}">受托人（用于解密）</a>
 {% endif %}
 
 {% endif %}
@@ -158,11 +158,11 @@ Once you do this, the tally will visible to you, the administrator, only.
 {% if show_result %}
 {% if election.result_released_at %}
 <span class="highlight-box round">
-    This election is complete.
+    选举已经完成.
 </span><br /><br /><br />
 {% endif %}
 
-<h3 class="highlight-box">Tally</h3>
+<h3 class="highlight-box">计数</h3>
 {% for question in election.pretty_result %}
 <b><span style="font-size:0.8em;">Question #{{forloop.counter}}</span><br />{{question.question}}</b><br />
 <table class="pretty" style="width: auto;">
@@ -176,49 +176,49 @@ Once you do this, the tally will visible to you, the administrator, only.
 
 {% if election.voting_has_stopped %}
 <span class="highlight-box round">
-    Election closed. Results will be released soon.
+    选举已关闭，结果将很快公开.
 </span><br /><br />
 {% else %}
 
 {% if election.voting_has_started %}
-<a class="button" href="{{test_cookie_url}}">Vote in this {{election.election_type}} </a>
+<a class="button" href="{{test_cookie_url}}">为{{election.election_type}}投票</a>
 <br />
 <br />
 {% if election.voting_extended_until %}
-This {{election.election_type}} was initially scheduled to end at {{election.voting_ends_at}} (UTC),<br />
-but has been extended until {{ election.voting_extended_until }} (UTC).
+此选举 {{election.election_type}} 最初被设定在 {{election.voting_ends_at}} (UTC)结束,<br />
+但现在被延期至 {{ election.voting_extended_until }} (UTC)结束.
 {% else %}
 {% if election.voting_ends_at %}
 <br />
-This {{election.election_type}} is scheduled to end at {{election.voting_ends_at}} (UTC).
+此选举 {{election.election_type}} 最初被设定在 {{election.voting_ends_at}} (UTC)结束.
 {% else %}
-This {{election.election_type}} ends at the administrator's discretion.
+此选举 {{election.election_type}} 由管理员自行决定终止.
 {% endif %}
 <br />
 {% endif %}
 
 {% if election.private_p and voter %}
 <br />
-This election is <em>private</em>. You are signed in as eligible voter <em>{{voter.name}}</em>.
+此选举是私有的. 你当前登录为有资格的选民，名字是 <em>{{voter.name}}</em>.
 {% endif %}
 
 <div class="highlight-box round" style="font-size: 1.2em; margin-right: 400px; display:none;" id="nojava_message">
-  You do not have Java installed in your browser.<br />At this time, Helios requires Java.<br />
-  Visit <a target="_new" href="http://java.sun.com">java.sun.com</a> to install it.
+  你的浏览器中没有安装java.<br />当前阶段，Helios需要java.<br />
+  查看 <a target="_new" href="http://java.sun.com">java.sun.com</a> 并下载.
 </div>
 <br />
 {% else %}
 <span class="highlight-box round">
-  voting is not yet open
+  选举暂未开始
 </span> <br /><br />
 {% endif %}
 
 {% if user %}
 {% if voter %}
 <p style="padding-top:1px;">
-  You are registered to vote in this {{election.election_type}}.
+  您已注册投票 {{election.election_type}}.
 {% if election.use_voter_aliases %}
-Your voter alias is {{voter.alias}}.
+  你的别称 {{voter.alias}}.
 {% endif %}
 </p>
 
@@ -227,12 +227,12 @@ Your voter alias is {{voter.alias}}.
 {% else %}
 {% if election.openreg %}
 {% if eligible_p %}
-You are eligible to vote in this election.
+你有资格在此选举中进行投票.
 {% else %}
-You are <em>not eligible</em> to vote in this {{election.election_type}}.
+你<em>没有资格</em>在此选举 {{election.election_type}} 中投票.
 {% endif %}
 {% else %}
-You are <em>not eligible</em> to vote in this {{election.election_type}}.
+你<em>没有资格</em>在此选举 {{election.election_type}} 中投票.
 <br />
 {% endif %}
 {% endif %}
@@ -241,10 +241,10 @@ You are <em>not eligible</em> to vote in this {{election.election_type}}.
 
 {% if election.openreg %}
 {% if election.eligibility %}
-This election is open to: {{election.pretty_eligibility|safe}}
-<a href="{{settings.SECURE_URL_HOST}}{% url "auth@index" %}?return_url={{CURRENT_URL}}">Log in</a> to check your eligibility.
+此选举对于以下选民开放: {{election.pretty_eligibility|safe}}
+<a href="{{settings.SECURE_URL_HOST}}{% url "auth@index" %}?return_url={{CURRENT_URL}}">登录</a> 来验证是否有资格.
 {% else %}
-Anyone can vote in this election.
+任何人都可进行投票.
 {% endif %}
 {% endif %}
 
@@ -255,30 +255,30 @@ Anyone can vote in this election.
 {% endif %}
 
 {% if admin_p and election.voting_ends_at and not election.tallying_started_at %}
-<br /><a href="{% url "election@extend" election.uuid %}">extend voting</a><br />
+<br /><a href="{% url "election@extend" election.uuid %}">延长选举</a><br />
 {% endif %}
 
 <div style="background: lightyellow; padding:5px; padding-left: 10px; margin-top: 15px; border: 1px solid #aaa;" class="round">
-<a href="#" onclick="$('#auditbody').slideToggle(250);">Audit Info</a>
+<a href="#" onclick="$('#auditbody').slideToggle(250);">审核信息</a>
 <div id="auditbody" style="display:none; word-wrap: break-word;">
-<br />Election URL:<br />
+<br />选举链接:<br />
 <a href="{{election.url}}">{{election.url}}</a>
 
 {% if election.frozen_at %}
 <br />
-<br />Election Fingerprint:<br />
+<br />选举认证码:<br />
 <tt style="font-size: 1.3em; font-weight: bold;">{{election.hash}}</tt>
 
 
 {% if votes %}
-<p>Your ballot tracker:<br />
+<p>你的选票追踪器:<br />
 <tt style="font-size:14pt; font-weight: bold;">{{votes.0.vote_hash}}</tt>
 </p>
 {% endif %}
 
 <p style="font-size: 1.3em;">
-<a href="{% url "election@voters@list-pretty" election.uuid %}">Ballot Tracking Center</a> &nbsp;| &nbsp;
-<a href="{% url "election@audited-ballots" election.uuid %}">Audited Ballots</a>
+<a href="{% url "election@voters@list-pretty" election.uuid %}">选票追踪中心</a> &nbsp;| &nbsp;
+<a href="{% url "election@audited-ballots" election.uuid %}">已审核选票</a>
 </p>
 
 {% endif %}
@@ -286,17 +286,17 @@ Anyone can vote in this election.
 {% if not election.voting_has_started %}
 <p style="font-size: 1.2em;">
   <br>
-  <a href="{{SECURE_URL_HOST}}/booth/vote.html?election_url={% url "election@home" election.uuid %}">preview booth</a>
+  <a href="{{SECURE_URL_HOST}}/booth/vote.html?election_url={% url "election@home" election.uuid %}">预览</a>
 </p>
 {% endif %}  
 
 {% if election.voting_has_stopped %}
 <p style="font-size: 1.2em;">
 {% if election.result %}
-verify <a target="_blank" href="/verifier/verify.html?election_url={% url "election@home" election.uuid %}">election tally</a>.
+verify <a target="_blank" href="/verifier/verify.html?election_url={% url "election@home" election.uuid %}">选举计数</a>.
 {% endif %}
 
-review the <a href="{{vote_url}}">voting booth</a>.
+查看 <a href="{{vote_url}}">选举预览</a>.
 </p>
 
 {% endif %}

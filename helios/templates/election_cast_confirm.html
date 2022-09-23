@@ -1,5 +1,5 @@
 {% extends TEMPLATE_BASE %}
-{% block title %}Confirm Vote{% endblock %}
+{% block title %}确认投票{% endblock %}
 
 {% block content %}
 <script language="javascript">
@@ -24,7 +24,7 @@ window.onbeforeunload = function(evt) {
     evt = window.event;
   }
   
-  var message = "You have not yet cast your ballot! Make sure to complete the voting process if you want your vote to count.";
+  var message = "你还没有投票！如果你想计票，请确保完成投票过程.";
 
   if (evt) {
     evt.returnValue = message;
@@ -34,15 +34,15 @@ window.onbeforeunload = function(evt) {
 };
 
 </script>
-<h1>Don't go yet!<br />Your ballot has not yet been cast.</h1>
+<h1>别离开此页面<br />你的选票还未被投递.</h1>
 
 <div id="waiting_div">
-    Verifying and Casting your ballot<br />
+    验证并且投出选票<br />
     <img src="/static/helios/loading.gif" />
 </div>
 
 <div style="word-wrap: break-word; width: 90vw;">
-Your ballot tracker is:<br>
+你的选票追踪码:<br>
 <b>{{vote_fingerprint}}</b>
 <br><br>
 </div>
@@ -64,15 +64,15 @@ Your ballot tracker is:<br>
 
 {% if user %}
 <h1>Sorry!<h1>
-<b>Sorry, you are <em>
+<b>抱歉, 你 <em>
   {% if election.openreg %}
-    <u>not eligible</u></em> for this election.
+    <u>没有资格</u></em> 在此次选举中进行投票.
   {% else %}
-    not registered</em> for this election, and registration is closed.
+    还未注册</em>到此次选举, 并且注册流程已经关闭.
   {% endif %}
   </b><br /></p>
 <p>
-    [<a href="{% url "election@view" election.uuid %}">return to the main election page</a>]
+    [<a href="{% url "election@view" election.uuid %}">返回选举主页面</a>]
 </p>
 {% else %}
 <p>
@@ -80,19 +80,18 @@ Your ballot tracker is:<br>
 
   {% if election.eligibility %}
   {% else %}
-   This election is open to <em>anyone</em>, so log in with your preferred account.
+   此次选举对任何人开放, 请登录任何你喜欢的账户进行投票.
   {% endif %}
 
 {% else %}
-  This election is only open to <em>registered voters</em>, so log in with
-  the same account you registered with.
+  此次选举仅开放给注册用户, 请使用与注册时相同的账号进行投票.
 {% endif %}
 </p>
 
 {{login_box|safe}}
 
 <br />
-Don't worry, we'll remember your ballot while you log in.
+别担心，当你登录的时候我们会记住你的选票.
 {% endif %}
 
 {% endif %}

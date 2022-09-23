@@ -1,31 +1,31 @@
 {% extends "helios/templates/cryptobase.html" %}
 
-{% block title %}Trustees for {{election.name}}{% endblock %}
+{% block title %}{{election.name}}的受托人{% endblock %}
 
 {% block content %}
-  <h3 class="title">{{election.name}} &mdash; Trustees <span style="font-size:0.7em;">[<a href="{% url "election@view" election.uuid %}">back to election</a>]</span></h3>
+  <h3 class="title">{{election.name}} &mdash; 受托人 <span style="font-size:0.7em;">[<a href="{% url "election@view" election.uuid %}">返回选举详情页</a>]</span></h3>
 
 <p>
-    Trustees are responsible for decrypting the election result.<br />
-    Each trustee generates a keypair and submits the public portion to Helios.<br />
-    When it's time to decrypt, each trustee needs to provide their secret key.
+    受托人负责解密选举结果<br/>
+    每个受托人生成一个密钥对并将公共部分提交给Helios<br/>
+    当解密的时候，每个受托人都需要提供他们的密钥。
 </p>
 
 {% if not election.frozen_at %}
 
 <p>
-  Helios is automatically your first trustee and will handle its keypair generation and decryption automatically.<br />
-  You may add additional trustees if you want, and you can even remove the Helios trustee.<br />
-  However, we recommend you do this only if you have a solid understanding of the trustee's role.
+  Helios将自动成为您的第一个受托人，并将自动处理其密钥对生成和解密<br/>
+  如果需要，您可以添加其他受托人，甚至可以删除Helios受托人<br/>
+  然而，我们建议您只有在充分了解受托人的角色时才这样做。
 </p>
 
 {% if admin_p %}
 <p>
-    [ <a onclick="return(confirm('Adding your own trustee requires a good bit more work to tally the election.\nYou will need to have trustees generate keypairs and safeguard their secret key.\n\nIf you are not sure what that means, we strongly recommend\nclicking Cancel and letting Helios tally the election for you.'));" href="{% url "election@trustees@new" election.uuid %}">add a trustee</a> ]
+    [ <a onclick="return(confirm('Adding your own trustee requires a good bit more work to tally the election.\nYou will need to have trustees generate keypairs and safeguard their secret key.\n\nIf you are not sure what that means, we strongly recommend\nclicking Cancel and letting Helios tally the election for you.'));" href="{% url "election@trustees@new" election.uuid %}">新增受托人</a> ]
 </p>
 {% if not election.has_helios_trustee %}
 <p>
-    <a href="{% url "election@trustees@add-helios" election.uuid %}">add Helios as a trustee</a>
+    <a href="{% url "election@trustees@add-helios" election.uuid %}">新增Helios为受托人</a>
 </p>
 {% endif %}
 {% endif %}
@@ -36,31 +36,31 @@
 
 {% else %}
 {% for t in trustees %}
-<h5> Trustee #{{forloop.counter}}: {{t.name}} 
+<h5> 受托人 #{{forloop.counter}}: {{t.name}}
 {% if admin_p %}
 {% if t.secret_key %}
 {% if not election.frozen_at %}[<a onclick="return confirm('Are you sure you want to remove Helios as a trustee?');" href="{% url "election@trustees@delete" election.uuid %}?uuid={{t.uuid}}">x</a>]{% endif %}
 {% else %}
 ({{t.email}})
 {% if not election.frozen_at %}[<a onclick="return confirm('Are you sure you want to remove this Trustee?');" href="{% url "election@trustees@delete" election.uuid %}?uuid={{t.uuid}}">x</a>]{% endif %}
-[<a onclick="return confirm('Are you sure you want to send this trustee his/her admin URL?');" href="{% url "election@trustee@send-url" election.uuid t.uuid %}">send login</a>]
+[<a onclick="return confirm('Are you sure you want to send this trustee his/her admin URL?');" href="{% url "election@trustee@send-url" election.uuid t.uuid %}">发送登录名</a>]
 {% endif %}
 {% endif %}
 </h5>
 
 <p>
 {% if t.public_key_hash %}
-  Public Key Fingerprint: <tt style="font-size:1.5em;">{{t.public_key_hash}}</tt>
+  公钥认证码: <tt style="font-size:1.5em;">{{t.public_key_hash}}</tt>
 {% else %}
-No public key uploaded yet.
+暂未上传公钥.
 {% endif %}
 </p>
 
 {% if election.encrypted_tally %}
 {% if t.decryption_factors %}
-<b>tally recorded for this trustee.</b>
+<b>为此受托人的记录进行计数.</b>
 {% else %}
-<em>waiting for this trustee's tally</em>
+<em>等待受托人的统计</em>
 {% endif %}
 {% endif %}
 </li>

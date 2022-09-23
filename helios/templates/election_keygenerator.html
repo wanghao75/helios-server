@@ -99,29 +99,29 @@ function show_pk() {
 
 </script>
 
-<h2 class="title">{{election.name}} &mdash; Trustee {{trustee.name}} &mdash; Key Setup</h2>
+<h2 class="title">{{election.name}} &mdash; 的受托人 {{trustee.name}} &mdash; 密钥设置</h2>
 
 <p>
-  As a trustee, it's time to set up your key for this election.
+  作为受托人，你需要设置你的密钥.
 </p>
 
 <p id="waiting_message">
-  Please wait for the generator to load...
+  请稍等密钥生成器正在加载...
 </p>
 
 <p id="generator">
 
-<span id="buttons"><button onclick="generate_keypair(); return false;" id="generate_button">Generate Election Keys</button></span>
+<span id="buttons"><button onclick="generate_keypair(); return false;" id="generate_button">生成选举密钥</button></span>
 
 <br />
-If you've already generated a keypair, you can <a href="javascript:show_key_reuse()">reuse it</a>.
+如果你已经生成过密钥对，你可以<a href="javascript:show_key_reuse()">重复使用</a>.
 </p>
 
 <div id="reuse">
-<h3>Reusing a Key</h3>
+<h3>重复使用密钥</h3>
 
 <p>
-Enter your complete secret key below:
+输入完整的密钥:
 </p>
 <form onsubmit="reuse_key(this.secret_key.value); return false;">
 <textarea cols="80" rows="5" wrap="soft" name="secret_key">
@@ -132,42 +132,42 @@ Enter your complete secret key below:
 </div>
 
 <div id="sk_download">
-<h3>Your Secret Key</h3>
+<h3>你的密钥</h3>
 <span id="clear_button">
-Your key has been generated, but you may choose to<br /><a href="javascript:clear_keys();">clear it from memory and start from scratch</a> if you prefer.<br />
+你的密钥已经生成, 如果你愿意可以从<br /><a href="javascript:clear_keys();">内存中清除并从头开始</a>.<br />
 </span>
 
 <p>
-    <button style="font-size:16pt;" onclick="download_sk(); $('#pk_link').show();">Show my secret key</button>
+    <button style="font-size:16pt;" onclick="download_sk(); $('#pk_link').show();">显示我的密钥</button>
 </p>
 </div>
 
 <div style="display:none;" id="pk_content">
-    <p>Bellow is your trustee secret key content. Please copy its content and save it securely. <br>
-       You can also click to dowload it to a file.
-       And please don't lose it! Otherwise it will not be possible to decrypt the election tally.<br>
+    <p>下面是你的受托人密钥内容，请复制内容并妥善保管. <br>
+       你也可以点击下载保存为文件.
+       并且请不要遗失密码，，否则在进行计算投票计数时无法进行解密.<br>
     </p>
     <textarea id="sk_content" rows="5" wrap="soft" cols="50" style="height: 25em;"></textarea>
 </div>
 
 <div style="display:none;" id="pk_link">
 <p>
-<a id="download_to_file" href="javascript:download_sk_to_file('trustee_key_for_{{election.name}}.txt');">download private key to a file</a>
+<a id="download_to_file" href="javascript:download_sk_to_file('trustee_key_for_{{election.name}}.txt');">下载私钥</a>
 </p>
 <p>
-  <a href="javascript:show_pk();">ok, I've saved the key, let's move on</a>
+  <a href="javascript:show_pk();">好的，我已经保存了密钥，下一步</a>
 </p>
 </div>
 
 <form method="post" id="pk_form" action="{% url "election@trustee@upload-pk" election.uuid trustee.uuid %}">
-<h3>Your Public Key</h3>
+<h3>你的公钥</h3>
 <p>
-    It's time to upload the public key to the server.
+    上传公钥到服务器.
 </p>
 <p>
-    The fingerprint of your public key is: <tt id="pk_hash" style="font-size: 1.5em; font-weight: bold;"></tt>.<br />
-    You may want to save this to confirm that your public key was properly stored by the server.<br />
-    (Your public key is not currently being displayed because you do not need to save it, the fingerprint is sufficient.)
+    你的公钥认证码: <tt id="pk_hash" style="font-size: 1.5em; font-weight: bold;"></tt>.<br />
+    您可能希望保存此文件，以确认服务器正确存储了您的公钥<br/>
+    (您的公钥当前未显示，因为您不需要保存它，因为公钥认证码就足够了.)
 </p>
 <textarea id="pk_textarea" name="public_key_json" cols="80" rows="10" style="display:none;">
 </textarea>

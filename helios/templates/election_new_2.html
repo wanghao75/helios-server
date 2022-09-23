@@ -46,14 +46,14 @@ $(document).ready(function() {
 });
 </script>
 
-  <h2 class="title">Create a New Election: {{name}}</h2>
+  <h2 class="title">创建选举: {{name}}</h2>
 {% ifequal election_type "helios" %}
-  <b>An election managed by Helios</b>.
+  <b>一个被Helios纳管的选举</b>.
 {% else %}
 {% ifequal election_type "one" %}
-  <b>An election managed by you, the single administrator</b>.
+  <b>一个由你管理的选举，你是唯一的管理者</b>.
 {% else %}
-<b>An election managed by multiple trustees</b>.
+<b>一个由多位受托人管理的选举</b>.
 {% endifequal %}
 {% endifequal %}
   <form class="prettyform" action="{% url "helios.views.election_new_3" %}" method="POST" id="create_election_form" onsubmit="return before_create();">
@@ -63,7 +63,7 @@ $(document).ready(function() {
       <input type="hidden" name="private_key" id="sk" value="" /><br />
 
 {% ifnotequal election_type "multiple" %}
-  <label for="generate_key">&nbsp;</label><button onclick="generate_keypair(); return false;" id="generate_button">Generate Election Keys</button>
+  <label for="generate_key">&nbsp;</label><button onclick="generate_keypair(); return false;" id="generate_button">生成选举密钥</button>
 {% else %}
 <div id="trustees">
 <h3>Trustees (up to 5)</h3>
@@ -85,8 +85,8 @@ $(document).ready(function() {
       <label for="">&nbsp;</label>
       <textarea id="sk_textarea" cols="60" rows="5">
       </textarea><br />
-      (You need to copy and paste this key and keep it safe,<br />
-      otherwise you won't be able to tally your election.)
+      (你需要复制粘贴密钥并且妥善保存,<br />
+      否则你将无法进行选举的计票.)
   </form>
 {% endifequal %}
 {% endblock %}

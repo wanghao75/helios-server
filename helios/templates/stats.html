@@ -2,14 +2,14 @@
 {% block title %}Statistics{% endblock %}
 
 {% block content %}
-<h1>Admin</h1>
+<h1>管理</h1>
 
 <ul>
-<li> <a href="{% url "stats@elections" %}">elections</a></li>
-<li> <a href="{% url "stats@recent-votes" %}">recent votes</a></li>
-<li> <a href="{% url "stats@elections-problems" %}">recent problem elections</a></li>
+<li> <a href="{% url "stats@elections" %}">选举</a></li>
+<li> <a href="{% url "stats@recent-votes" %}">最近投票过的选举</a></li>
+<li> <a href="{% url "stats@elections-problems" %}">最近的存在问题选举</a></li>
 </ul>
 
-<p><b>{{num_votes_in_queue}}</b> votes in queue. {% if num_votes_in_queue %}[<a href="{% url "stats@force-queue" %}">force it</a>]{% endif %}</p>
+<p><b>{{num_votes_in_queue}}</b> 正在队列中的投票. {% if num_votes_in_queue %}[<a href="{% url "stats@force-queue" %}">结束</a>]{% endif %}</p>
 
 {% endblock %}

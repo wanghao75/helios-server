@@ -1,17 +1,17 @@
 {% extends TEMPLATE_BASE %}
 
-{% block title %}Release Result &mdash; {{election.name}}{% endblock %}
+{% block title %}公布选举结果 &mdash; {{election.name}}{% endblock %}
 {% block content %}
-  <h2 class="title">{{election.name}} &mdash; Release Result <span style="font-size:0.7em;">[<a href="{% url "election@view" election.uuid %}">cancel</a>]</span></h2>
+  <h2 class="title">{{election.name}} &mdash; 公布结果 <span style="font-size:0.7em;">[<a href="{% url "election@view" election.uuid %}">取消</a>]</span></h2>
 
   <p>
-    You are about to release the result for this election.
+    即将公布此选举结果.
   </p>
 
   <form method="POST" action="">
     <input type="hidden" name="csrf_token" value="{{csrf_token}}" />
     <p>
-    <input type="checkbox" name="send_email" value="send_email" checked="checked"/> Send email to voters reporting release of result.
+    <input type="checkbox" name="send_email" value="send_email" checked="checked"/> 发送邮件通知选民选举结果.
     </p>
     <input type="submit" class="button" value="release result!" />
   </form>
