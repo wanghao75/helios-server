@@ -29,7 +29,7 @@ def get_flow(redirect_url=None):
 def get_auth_url(request, redirect_url):
   flow = get_flow(redirect_url)
   request.session['gitee_redirect_uri'] = redirect_url
-  return flow.step1_get_authorize_url()
+  return flow.step1_get_authorize_url().replace("&access_type=offline", "")
 
 def get_user_info_after_auth(request):
   redirect_uri = request.session['gitee_redirect_uri']
