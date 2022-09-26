@@ -1,6 +1,6 @@
 {% extends TEMPLATE_BASE %}
 
-{% block title %}{{election.name}}的已审计选票{% endblock %}
+{% block title %}{{election.name}} - 已审计选票{% endblock %}
 
 {% block content %}
   <h2 class="title">{{election.name}} &mdash; 已审计选票 <span style="font-size:0.7em;">[<a href="{% url "election@view" election_uuid=election.uuid %}">返回选举详情页</a>]</span></h2>

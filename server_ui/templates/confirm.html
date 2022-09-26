@@ -1,5 +1,5 @@
 {% extends 'server_ui/templates/base.html' %}
-{% block title %}Confirm Vote{% endblock %}
+{% block title %}验证投票% endblock %}
 
 {% block content %}
 <script language="javascript">
@@ -12,20 +12,20 @@ function show_waiting() {
   $('#waiting_div').show();
 }
 </script>
-<h1>Confirm your Vote</h1>
+<h1>验证你的投票</h1>
 
 {% if error %}
 <p style="color: red;">{{error}}</p>
 {% endif %}
 
-<h3>Your Ballot</h3>
+<h3>你的选票</h3>
 
 <p style="font-size:1.6em;">
     <tt>{{vote_fingerprint}}</tt>
 </p>
 
 <div id="cast_div">
-<h3>Cast Your Ballot with your Credentials</h3>
+<h3>使用你的凭证投票</h3>
 
 <form method="post" onsubmit="show_waiting();" action="">
     <input type="hidden" name="csrf_token" value="{{csrf_token}}" />
@@ -38,12 +38,12 @@ function show_waiting() {
 </form>
 
 <p>
-    Forgot your password? <a href="{% url "auth@password@forgotten" %}?return_url={% url "election@cast-confirm" %}">Have it emailed to you</a>.<br />(don't worry, we won't forget your vote).
+    忘记密码? <a href="{% url "auth@password@forgotten" %}?return_url={% url "election@cast-confirm" %}">通过电子邮件发送</a>.<br />(别担心，我们不会忘记你的投票).
 </p>
 </div>
 
 <div id="waiting_div" align="center">
-  Verifying and Casting your ballot<br />
+  验证并投票<br />
   <img src="/static/helios/loading.gif" />
 </div>
 

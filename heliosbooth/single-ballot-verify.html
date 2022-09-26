@@ -112,29 +112,29 @@ function verify_single_ballot(election_url, audit_trail) {
 </head>
 <body>
 <div id="wrapper">
-<h2 style="padding-left: 10px;">Helios Single-Ballot Verifier</h2>
+<h2 style="padding-left: 10px;">Helios单一选票验证器</h2>
 <div id="content">
 
 <div id="verifier_loading">
-Loading verifier...
+加载验证器...
 </div>
 
 <div id="dummy_bigint" style="display:none;">
-Your browser does not have the Java plugin installed.<br /><br />
-At this time, the Java plugin is required for browser-based ballot auditing, although it is not required for ballot preparation.
+你的浏览器没有Java插件.<br /><br />
+目前，基于浏览器的投票审核需要Java插件，但投票准备阶段不需要Java插件.
 </div>
 
 <div id="verifier" style="display:none;">
 <p style="font-size: 16pt;">
-    This single-ballot verifier lets you enter an audited ballot<br />and verify that it was prepared correctly.
+    此单一选票验证器允许您输入经审核的选票<br/>并验证其是否正确准备.
 </p>
 
 <form onsubmit="try {verify_single_ballot(this.election_url.value, this.audit_trail.value);} catch (e) {E = e;} return false;">
-Enter the Election URL:
+输入选举链接:
     <input type="text" size="50" name="election_url" id="election_url" /><br />
 
 <p>
-Your Ballot:
+你的选票:
 </p>
 
 <textarea name="audit_trail" cols="80" rows="7">

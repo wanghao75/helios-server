@@ -11,24 +11,24 @@
 <div class="row">&nbsp;</div>
 <div class="large-9 columns">
   {% if settings.MASTER_HELIOS %}
-<p>Helios offers <b>verifiable online elections</b>.</p>
+<p>Helios提供<b>可验证在线选举</b>.</p>
 
-<p>We believe democracy is important, whether it’s your book club, parent-teacher association, student government, workers’ union, or state. So we’ve made truly verifiable elections as easy as everything else on the Web.</p>
+<p>我们相信民主很重要，无论是你的读书俱乐部、家长教师协会、学生政府、工会还是国家。因此，我们已经使真正可核查的选举与网络上的其他一切一样容易.</p>
 
 <p>
-Helios elections are:
+Helios选举:
 <ul class="disc">
-<li><b>private</b>: no one knows how you voted.</li>
-<li><b>verifiable</b>: each voter gets a tracking number.</li>
-<li><b>proven</b>: Helios is open-source, vetted by top-tier experts, and in use by major organizations.</li>
+<li><b>隐私的</b>: 没有人知晓你进行的投票.</li>
+<li><b>可验证的</b>: 每个选民都拥有一个选票追踪码.</li>
+<li><b>经过证实的</b>: Helios是开源的，由顶级专家审查，并被主流组织认可使用的.</li>
 </ul>
 
 <p>
-More than <b>2,000,000 votes</b> have been cast using Helios.
+超过<b>2,000,000选票</b>通过Helios系统投出.
 </p>
 
 {% if create_p %}
-<a class="button" href="{% url "elections@new" %}">create an election</a>
+<a class="button" href="{% url "elections@new" %}">创建选举</a>
 {% endif %}
 
   {% else %}
@@ -46,7 +46,7 @@ More than <b>2,000,000 votes</b> have been cast using Helios.
     {% endfor %}
   </p>
   {% else %}
-  <h4>no featured elections at the moment</h4>
+  <h4>暂无选举</h4>
   {% endif %}
 {% endif %}
   
@@ -58,8 +58,8 @@ More than <b>2,000,000 votes</b> have been cast using Helios.
 {% if user %}
 <!--<div class="row right">{{user.display_html_big|safe}}</div>-->
 {% if create_p %}
-<a class="small button" href="{% url "elections@new" %}">create election</a>
-<h5 class="subheader">Administration</h5>
+<a class="small button" href="{% url "elections@new" %}">创建选举</a>
+<h5 class="subheader">管理员</h5>
 {% if elections_administered %}
 <ul>
 {% for election in elections_administered %}
@@ -67,15 +67,15 @@ More than <b>2,000,000 votes</b> have been cast using Helios.
 {% endfor %}
 </ul>
 {% else %}
-<em>none yet</em>
+<em>暂无</em>
 {% endif %}
 <div class="row right">
-<a class="tiny button" href="{% url "elections@administered" %}">see all</a>
+<a class="tiny button" href="{% url "elections@administered" %}">查看所有</a>
 </div>
 <div class="row"></div>
 {% endif %}
 
-<h5 class="subheader">Recent Votes</h5>
+<h5 class="subheader">近期参与投票</h5>
 {% if elections_voted %}
 <ul>
 {% for election in elections_voted %}
@@ -83,17 +83,17 @@ More than <b>2,000,000 votes</b> have been cast using Helios.
 {% endfor %}
 </ul>
 {% else %}
-<em>none yet</em>
+<em>暂无</em>
 {% endif %}
-<div class="row right"><a class="tiny button" href="{% url "elections@voted" %}">see all</a></div>
+<div class="row right"><a class="tiny button" href="{% url "elections@voted" %}">查看所有</a></div>
 <div class="row"></div>
 {% else %}
 {% if settings.SHOW_LOGIN_OPTIONS %}
-<h5>Log In to Start Voting</h5>
+<h5>登录进行投票</h5>
 {{login_box|safe}}
 {% else %}
 <p>
-Select an election to start voting. You will be asked for your voting credentials after you complete a ballot.
+选择要开始投票的选举.完成投票后，您将被要求提供投票凭证.
 </p>
 {% endif %}
 {% endif %}

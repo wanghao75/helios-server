@@ -2,16 +2,16 @@
 {% block title %}Confirm Vote{% endblock %}
 
 {% block content %}
-<h1>Your Vote was Cast</h1>
+<h1>选票被投出</h1>
 
 <p>
-    A vote was successfully cast for <b>{{voter.voter_id}}</b>, with vote fingerprint:
+    <b>{{voter.voter_id}}</b>的选票成功投出, 投票验证码为:
     <br /><br />
     <tt style="font-size: 2em;">{{voter.vote_hash}}</tt>
 </p>
 
 <p>
-    Visit the <a href="{% url "election@view" election.uuid %}">election homepage</a>.
+    访问 <a href="{% url "election@view" election.uuid %}">选举主页面</a>.
 </p>
 
 {% endblock %}

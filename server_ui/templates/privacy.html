@@ -1,5 +1,5 @@
 {% extends 'server_ui/templates/base.html' %}
-{% block title %}{{ settings.SITE_TITLE }} &mdash; Privacy{% endblock %}
+{% block title %}{{ settings.SITE_TITLE }} &mdash; 隐私{% endblock %}
 
 {% block header %}
 {% endblock %}
@@ -8,56 +8,56 @@
 
 <div class="large-12-columns">
 
-<div class="row"><h2>Privacy</h2></div>
+<div class="row"><h2>隐私</h2></div>
 
 <div class="row">
 
-<h3>In General</h3>
+<h3>通常</h3>
 
 <ul>
-<li> Helios is designed with built-in privacy. If you have any questions or concerns about Helios privacy not covered here, <a href="mailto:help@heliosvoting.org">send us an email</a>.</li>
-<li> We collect only the information needed to provide secure, trustworthy elections.</li>
-<li> We make certain information available publicly on our web site as part of the process of auditing elections (details below.) Other than that, we do not give away any information we collect.</li>
-<li> We do not sell any information.</li>
-<li> We do not use external trackers or advertising that could leak information about you, except for Facebook and Twitter share buttons. Even for those, we use origin sandboxing to limit how much Facebook and Twitter can determine about you, and we only use those buttons on the election information page.
+<li>Helios设计有内置隐私。如果您对Helios隐私有任何问题或疑虑，请访问<a href="mailto:help@heliosvoting.org">向我们发送电子邮件</a></li>
+<li>我们只收集提供安全可靠选举所需的信息</li>
+<li>作为审计选举过程的一部分，我们在网站上公开提供某些信息（详情如下）。除此之外，我们不会泄露我们收集的任何信息</li>
+<li>我们不出售任何信息</li>
+<li>我们不使用可能泄露您信息的外部跟踪程序或广告，除了Facebook和Twitter共享按钮。即使是这样，我们也使用源站沙箱来限制Facebook和Twitter对你的判断，我们只使用选举信息页面上的按钮。</li>
 </ul>
 
 <p>
-<b>If you want to stop reading here, you can: the rest provides detail about the above principles without weakening them.</b>
+<b>如果你想停止阅读这里的内容，你可以：其余部分提供了关于上述原则的详细信息，但不削弱它们.</b>
 </p>
 
 <hr>
 
-<h3>For Voters</h3>
+<h3>对于选民</h3>
 
-<p><b>About your vote:</b></p>
+<p><b>关于你的投票:</b></p>
 
 <ul>
-<li> Your vote on Helios is considered extremely private.</li>
-<li> Helios uses SSL to transmit data between your browser and our servers.</li>
-<li> In addition, Helios uses end-to-end encryption so that, even after SSL decryption, your vote is <em>still</em> encrypted with the election key. Helios servers never see your vote. </li>
-<li> In the normal process of a Helios election, your individual vote is never decrypted: encrypted votes are combined into a tally, using a process called homomorphic encryption, and only the final tally &mdash; never an intermediate tally &mdash; is decrypted.</li>
-<li> The trustees of your election, if they all collude, technically have the power to decrypt your individual vote. This action is strongly discouraged and is against Helios policy. It is why high-security elections should use at least 3 trustees with different allegiances. </li>
-<li> Helios may, at your election administrators' discretion, serve as a trustee of your election. This does <em>not</em> give Helios any power to decrypt your vote. In fact, it is probably preferable, since without Helios's collaboration, the remaining trustees cannot decrypt individual votes. It is our policy that Helios, when acting as a trustee, will only decrypt the election tally, never an individual vote.</li>
-<li> When Helios is not acting as a trustee of your election, Helios has no power to decrypt any individual vote.</li>
+<li>你对Helios的投票被认为是非常私人的</li>
+<li>Helios使用SSL在浏览器和服务器之间传输数据</li>
+<li>此外，Helios使用端到端加密，因此即使在SSL解密之后，您的投票仍然使用选举密钥加密。Helios服务器永远看不到您的投票</li>
+<li>在Helios选举的正常过程中，您的个人选票永远不会被解密：加密的选票通过一种称为同态加密的过程合并成计票，并且只有最终计票结果&mdash；从不进行中间计数&mdash；已解密</li>
+<li>如果你的选举受托人都串通，那么从技术上讲，他们有权解密你的个人投票。强烈建议不要采取这种行动，这是违反Helios政策的。这就是为什么高度安全的选举应该使用至少3名不同忠诚的受托人</li>
+<li>Helios可以根据您的选举管理者的判断，担任您的选举的受托人。这并没有给Helios任何解密您投票的权力。事实上，这可能更可取，因为没有Helios的合作，其余的受托人无法解密个人投票。我们的政策是，Helios在担任受托人时，只会解密选举记录，而不会解密个人投票</li>
+<li>当Helios不是您选举的受托人时，Helios无权解密任何个人投票</li>
 </ul>
 
-<p><b>About non-vote data:</b></p>
+<p><b>关于非投票数据:</b></p>
 
 <ul>
-<li> To vote, you will need to present credentials to prove your eligibility. Depending on how your election was set up, this may be a username and password that were generated for you, or a Facebook, Google, Yahoo, or Twitter login. Helios uses the appropriate login interfaces to those external services so that it never has access to your credentials at those services. </li>
-<li> For the purposes of election auditing, Helios stores your name, email address, and the minimal eligibility information needed to qualify you, for example the Facebook group that you belong to that was designated as the eligibility requirement for this election.</li>
-<li> The complete metadata of your vote: where you voted from, what time you voted, and how often you vote (only the last vote counts!), are stored in Helios and may be made available to your election administrators as part of the auditing process. This is critical for ensuring a secure and trustworthy election.</li>
-<li> If your election was made public by the administrator, then some core auditing information is made available to the public: the fact that you voted, the time of your vote, and its tracking number. If your administrator chose to use voter aliases, then your name will be replaced by your pseudonymous voter ID in that dataset. In all cases, Helios takes care to mask or fully hide your email address to prevent email harvesting for spam.</li>
-<li> If your election was made private, then this same information is available to only you, your fellow voters, and your election administrators.</li>
+<li>要投票，你需要出示证件来证明你的资格。根据您的选择设置，这可能是为您生成的用户名和密码，或者是Facebook、Google、Yahoo或Twitter登录名。Helios对这些外部服务使用适当的登录接口，因此它永远无法访问这些服务中的凭据</li>
+<li>为了进行选举审核，Helios会存储您的姓名、电子邮件地址以及符合资格所需的最低资格信息，例如，您所属的Facebook群组被指定为此次选举的资格要求</li>
+<li>投票的完整元数据：投票地点、投票时间和投票频率（仅计算最后一票！），存储在Helios中，作为审核过程的一部分，您的选举管理员可以使用。这对于确保安全可靠的选举至关重要</li>
+<li>如果您的选举是由管理员公开的，那么一些核心审计信息将向公众公开：您投票的事实、投票时间及其跟踪号。如果管理员选择使用投票人别名，则您的姓名将替换为该数据集中的匿名投票人ID。在所有情况下，Helios都会小心地屏蔽或完全隐藏您的电子邮件地址，以防止收集垃圾邮件</li>
+<li>如果你的选举是非公开的，那么同样的信息只有你、你的选民同伴和你的选举管理者才能获得</li>
 </ul>
 
-<h3>For Administrators</h3>
+<h3>对于管理员</h3>
 
 
 <ul>
-<li> As an administrator, you have the power to designate who can vote, when the election starts, when the election stops, and when the results are released. Other than that, you have no power beyond what voters in your election have. This is by design.</li>
-<li> To create and administer an election, you will need to log in using Google, Facebook, Yahoo, or Twitter. Helios queries and retains only the basic information needed to authenticate you the next time around: your name, email address, and user ID. Helios will use this information to message you when your election requires attention.</li>
+<li>作为管理员，您有权指定谁可以投票、选举何时开始、选举何时停止以及结果何时公布。除此之外，你没有任何权力超越你选举中选民的权力。这是精心设计的</li>
+<li>要创建和管理选举，您需要使用Google、Facebook、Yahoo或Twitter登录。Helios只查询并保留下次认证您所需的基本信息：您的姓名、电子邮件地址和用户ID。当您的选择需要关注时，Helios会使用这些信息向您发送消息</li>
 </ul>
 
 </div>

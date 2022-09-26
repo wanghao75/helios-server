@@ -2,13 +2,13 @@
 
 {% block content %}
 
-  <h2 class="title">Election {{election.name}} Already Tallied</h2>
+  <h2 class="title">选举 {{election.name}} 的票数已计算</h2>
 
   <p>
-      This election has already been tallied (or at least the tally has begun), so you can no longer cast a vote.
+      这次选举已经计票（或者至少计票已经开始），所以你不能再投票了.
   </p>
   
   <p>
-      <a href="{% url "election@view" election.uuid %}">view the election</a>
+      <a href="{% url "election@view" election.uuid %}">查看选举</a>
   </p>
 {% endblock %}

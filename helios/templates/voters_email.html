@@ -1,6 +1,6 @@
 {% extends TEMPLATE_BASE %}
 
-{% block title %}Contact Voters for {{election.name}}{% endblock %}
+{% block title %}{{election.name}} - 选民联系途径{% endblock %}
 {% block content %}
 <script>
 var voter_id = null;
@@ -9,11 +9,11 @@ voter_id = '{{voter.voter_id}}';
 {% endif %}
 </script>
 
-  <h2 class="title">{{election.name}} &mdash; Contact Voters <span style="font-size:0.7em;">[<a href="{% url "election@view" election.uuid %}">back to election</a>]</span></h2>
+  <h2 class="title">{{election.name}} &mdash; 选民联系途径 <span style="font-size:0.7em;">[<a href="{% url "election@view" election.uuid %}">返回选举详情页</a>]</span></h2>
 
 {% if voter %}  
   <p>
-    You are sending this email to a specific user: <b>{{voter.name}} ({{voter.voter_id}})</b>
+    您正在向指定用户发送此邮件: <b>{{voter.name}} ({{voter.voter_id}})</b>
   </p>
 {% endif %}
 
@@ -36,7 +36,7 @@ Subject: {{default_subject}}
 </pre>
 
 <p>
-You may tweak the subject and add a custom message using the form below.
+你可以调整主题并使用下面的表单添加自定义消息.
 </p>
 
   <form class="prettyform" action="" method="POST" id="email_form">
@@ -55,11 +55,11 @@ You may tweak the subject and add a custom message using the form below.
   </div>
   
   <div id="done" style="display:none;">
-    Done, go <a href="{% url "election@view" election.uuid %}">back to election</a>.
+    完成, <a href="{% url "election@view" election.uuid %}">返回选举详情页</a>.
   </div>
 
   <div id="error" style="display:none;">
-    Error emailing participants. Check server settings, make sure there's an SMTP server.
+    向参与者发送电子邮件时出错：检查服务器设置，确保有SMTP服务器.
   </div>
 
 {% endblock %}

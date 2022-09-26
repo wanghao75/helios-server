@@ -1,7 +1,7 @@
 {% extends TEMPLATE_BASE %}
 
 {% block header %}
-<h2>{{ settings.SITE_TITLE }} &mdash; Password Forgotten</h2>
+<h2>{{ settings.SITE_TITLE }} &mdash; 忘记密码</h2>
 {% endblock %}
 
 {% block content %}
@@ -15,6 +15,6 @@
 <form class="prettyform" action="" method="POST">
     <input type="hidden" name="csrf_token" value="{{csrf_token}}" />
     <input type="hidden" name="return_url" value="{{return_url}}" />
-Your Username : <input type="text" name="username" /> <input type="submit" value="Send Reminder" />
+用户名 : <input type="text" name="username" /> <input type="submit" value="Send Reminder" />
 </form>
 {% endblock %}

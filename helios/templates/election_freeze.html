@@ -34,7 +34,7 @@
 <form method="post" action="">
 <input type="hidden" name="csrf_token" value="{{csrf_token}}" />
     
-<input class="button" type="submit" value="Freeze the ballot" />
+<input class="button" type="submit" value="冻结选票" />
 <button onclick="document.location='{% url "election@view" election.uuid %}'; return false;">不进行冻结</button>
 </form>
 {% endif %}

@@ -1,28 +1,28 @@
 {% extends TEMPLATE_BASE %}
 
-{% block title %}Voters &amp; Ballot Tracking Center for {{election.name}}{% endblock %}
+{% block title %}{{election.name}} - 选民 &amp; 选票追踪中心{% endblock %}
 {% block content %}
-  <h3 class="title">{{election.name}} &mdash; Voters and Ballot Tracking Center <span style="font-size:0.7em;">[<a href="{% url "election@view" election.uuid %}">back to election</a>]</span></h3>
+  <h3 class="title">{{election.name}} &mdash; 选民及选票追踪中心 <span style="font-size:0.7em;">[<a href="{% url "election@view" election.uuid %}">返回选举详情页</a>]</span></h3>
 
 <p>
-<b>Who can vote?</b>
+<b>谁可以投票?</b>
 {% if election.openreg %}
 {{election.pretty_eligibility|safe}}
 {% else %}
-<em>Only the voters listed here</em>.
+<em>只有在此列出的选民</em>.
 {% endif %}
 </p>
 
 {% if admin_p and not election.frozen_at %}
 {% if election.private_p %}
-<em>Your election is marked private, which means you cannot open registration up more widely</em>.<br />
+<em>你的选举被标记为非公开，这意味着无法更广泛地公开注册</em>.<br />
 {% else %}
 <form method="post" action="{% url "election@voters@eligibility" election.uuid %}">
 <input type="hidden" name="csrf_token" value="{{csrf_token}}" />
-<input type="radio" name="eligibility" value="openreg" {% if election.openreg and not election.eligibility %}CHECKED{% endif %} /> anyone can vote<br />
-<input type="radio" name="eligibility" value="closedreg" {% if not election.openreg %}CHECKED{% endif %} /> only voters listed explicitly below can vote<br />
+<input type="radio" name="eligibility" value="openreg" {% if election.openreg and not election.eligibility %}CHECKED{% endif %} /> 任何人可以进行投票<br />
+<input type="radio" name="eligibility" value="closedreg" {% if not election.openreg %}CHECKED{% endif %} /> 只有以下明确列出的选民才能投票<br />
 {% if categories %}
-<input type="radio" name="eligibility" value="limitedreg" {% if election.eligibility %}CHECKED{% endif %} /> only voters who are members of 
+<input type="radio" name="eligibility" value="limitedreg" {% if election.eligibility %}CHECKED{% endif %} /> 只有是如下类别之一的成员的选民可以投票：
 <select name="category_id">
 {% for category in categories %}
 <option value="{{category.id}}" {% if eligibility_category_id == category.id %}SELECTED{% endif %}> {{category.name}}</option>
@@ -36,15 +36,15 @@
 {% endif %}
 
 {% if email_voters and election.frozen_at and admin_p %}
-<p><a class="button" href="{% url "election@voters@email" election.uuid %}">email voters</a></p>
+<p><a class="button" href="{% url "election@voters@email" election.uuid %}">邮件联系选民</a></p>
 {% endif %}
 
 {% if election.num_voters > 20 %}
 <p>
 {% if q %}
-<p><em>searching for <u>{{q}}</u>.</em> [<a href="?">clear search</a>]</p>
+<p><em>搜索<u>{{q}}</u>.</em> [<a href="?">清空搜索</a>]</p>
 {% else %}
-<form method="get" action="{% url "election@voters@list-pretty" election.uuid %}"><b>search</b>: <input type="text" name="q" /> <input type="submit" value="search" /></form>
+<form method="get" action="{% url "election@voters@list-pretty" election.uuid %}"><b>搜索</b>: <input type="text" name="q" /> <input type="submit" value="search" /></form>
 {% endif %}
 </p>
 {% endif %}
@@ -53,11 +53,11 @@
 <!-- Add a Voter: WORK HERE-->
 {% if upload_p and not election.openreg %}
 <p>
-<a class="button" href="{% url "election@voters@upload" election_uuid=election.uuid %}">bulk upload voters</a>
+<a class="button" href="{% url "election@voters@upload" election_uuid=election.uuid %}">批量上传选民</a>
 </p>
 
 {% if voter_files %}
-Prior Bulk Uploads:
+以前的批量上传:
 <ul>
 {% for vf in voter_files %}
 <li>
@@ -68,13 +68,13 @@ Prior Bulk Uploads:
 {% endif %}
  bytes, at {{vf.uploaded_at}}:
 {% if vf.processing_finished_at %}
-<em>done processing: {{vf.num_voters}} voters loaded</em>
+<em>已完成处理: {{vf.num_voters}} 选民上传完成</em>
 {% else %}
 
 {% if vf.processing_started_at %}
-<em>currently processing</em>
+<em>当前正在处理</em>
 {% else %}
-<em>not yet processed</em>
+<em>尚未处理</em>
 {% endif %}
 
 {% endif %}
@@ -90,22 +90,22 @@ Prior Bulk Uploads:
 <p>
 <b>
 {% if election.num_cast_votes %}
-{{election.num_cast_votes}} cast vote{% ifequal election.num_cast_votes 1 %}{% else %}s{% endifequal %}
+{{election.num_cast_votes}} 投票{% ifequal election.num_cast_votes 1 %}{% else %}s{% endifequal %}
 {% else %}
-no votes yet
+暂无选民
 {% endif %}
 </b>
 </p>
 
 {% if voters_page.has_previous %}
-<a href="{% url "election@voters@list-pretty" election.uuid %}?page={{voters_page.previous_page_number}}&limit={{limit}}&q={{q|urlencode}}">previous {{limit}}</a> &nbsp;&nbsp;
+<a href="{% url "election@voters@list-pretty" election.uuid %}?page={{voters_page.previous_page_number}}&limit={{limit}}&q={{q|urlencode}}">往前 {{limit}}</a> &nbsp;&nbsp;
 {% endif %}
 
 
-Voters {{voters_page.start_index}} - {{voters_page.end_index}} (of {{total_voters}})&nbsp;&nbsp;
+选民 {{voters_page.start_index}} - {{voters_page.end_index}} (of {{total_voters}})&nbsp;&nbsp;
 
 {% if voters_page.has_next %}
-<a href="{% url "election@voters@list-pretty" election.uuid %}?page={{voters_page.next_page_number}}&limit={{limit}}&q={{q|urlencode}}">next {{limit}}</a> &nbsp;&nbsp;
+<a href="{% url "election@voters@list-pretty" election.uuid %}?page={{voters_page.next_page_number}}&limit={{limit}}&q={{q|urlencode}}">往后 {{limit}}</a> &nbsp;&nbsp;
 {% endif %}
 
 <table class="pretty">
@@ -113,16 +113,16 @@ Voters {{voters_page.start_index}} - {{voters_page.end_index}} (of {{total_voter
 {% if admin_p or not election.use_voter_aliases %}
 {% if admin_p %}
 <th style="width: 80px;">Actions</th>
-<th>Login</th>
-<th>Email Address</th>
+<th>登录名</th>
+<th>邮件地址</th>
 {% endif %}
-<th>Name</th>
+<th>名字</th>
 {% endif %}
 
 {% if election.use_voter_aliases %}
-<th>Alias</th>
+<th>别称</th>
 {% endif %}
-<th>Smart Ballot Tracker</th>
+<th>智能选票追踪器</th>
 </tr>
 {% for voter in voters %}
 <tr>
@@ -130,7 +130,7 @@ Voters {{voters_page.start_index}} - {{voters_page.end_index}} (of {{total_voter
 {% if admin_p %}
 <td style="white-space: nowrap;">
 {% if election.frozen_at %}
-[<a href="{% url "election@voters@email" election.uuid %}?voter_id={{voter.voter_login_id}}">email</a>]
+[<a href="{% url "election@voters@email" election.uuid %}?voter_id={{voter.voter_login_id}}">邮件</a>]
 {% endif %}
 [<a onclick="return confirm('are you sure you want to remove {{voter.name}} ?');" href="{% url "election@voter@delete" election.uuid voter.uuid %}">x</a>]
 </td>
@@ -149,7 +149,7 @@ Voters {{voters_page.start_index}} - {{voters_page.end_index}} (of {{total_voter
 
 {% else %}
 <br /><br />
-<em>no voters.</em>
+<em>暂无选民.</em>
 {% endif %}
 
 {% endblock %}

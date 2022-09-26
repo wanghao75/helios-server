@@ -1,29 +1,29 @@
 {% extends "helios/templates/cryptobase.html" %}
 
 {% block content %}
-  <h2 class="title">{{election.name}} &mdash; Trustee {{trustee.name}} Home</span></h2>
+  <h2 class="title">{{election.name}} &mdash; 受托人 {{trustee.name}} 主页</span></h2>
 
 <p>
 {% if trustee.public_key_hash %}
-You have successfully uploaded your public key.<br />
-Your public key fingerprint is: <b>{{trustee.public_key_hash}}</b>.<br />
-You can <a href="{% url "election@trustee@check-sk" election.uuid trustee.uuid %}">verify that you have the right secret key</a>.
+你已成功上传公钥.<br />
+你的公钥验证码是: <b>{{trustee.public_key_hash}}</b>.<br />
+你可以 <a href="{% url "election@trustee@check-sk" election.uuid trustee.uuid %}">验证密钥正确性</a>.
 {% else %}
-<a href="{% url "election@trustee@key-generator" election.uuid trustee.uuid %}">setup your key</a>
+<a href="{% url "election@trustee@key-generator" election.uuid trustee.uuid %}">设置密码</a>
 {% endif %}
 </p>
 
 <p>
 {% if election.encrypted_tally %}
 {% if trustee.decryption_factors %}
-You have successfully uploaded your decryption.
+你已成功上传解密密钥.
 {% else %}
-    The encrypted tally for this election is ready.<br />
-    <a href="{% url "election@trustee@decrypt-and-prove" election.uuid trustee.uuid %}">decrypt with your key</a>
+    此选举的加密计数已准备就绪.<br />
+    <a href="{% url "election@trustee@decrypt-and-prove" election.uuid trustee.uuid %}">使用密钥解密</a>
 {% endif %}
 {% else %}
-Once the tally is computed, come back here to provide your secret key for decryption purposes.<br />
-You should keep the email with your trustee homepage link, which contains the credentials needed to get back here.
+计算完计数后，请返回此处提供用于解密的密钥<br/>
+您应该保留带有受托人主页链接的电子邮件，其中包含返回此处所需的凭据.
 {% endif %}
 </p>
 

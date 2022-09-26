@@ -11,48 +11,44 @@
 <div class="row"><h2>FAQ</h2></div>
 
 <div class="row">
-<b>What makes Helios different/better than other voting systems?</b>
+<b>是什么使Helios与其他投票系统不同或者更好?</b>
 
-<p>Helios is truly verifiable. Each voter obtains a ballot tracker which can be checked against the Ballot Tracking Center to ensure that the ballot was received and tallied appropriately. What this means is that no one, not even the administrators of the Helios Voting system, can alter your vote.
+<p>Helios是真正可以验证的系统,每个选民都可以获得一个选票跟踪系统，该系统可以与选票跟踪中心进行核对，以确保选票得到正确接收和统计.这意味着没有人，即使是Helios投票系统的管理员，也不能改变你的投票.
 </p>
 </div>
 
 <div class="row">&nbsp;</div>
 
 <div class="row">
-<b>I’ve heard of “voter-verifiable” before, what’s different about Helios?</b>
-<p>Many voting systems claim to be voter-verifiable. We believe voter-verifiability is critically important, and we support the efforts of other organizations to help improve the voting machines used in public-office elections. However, we believe that more extensive verifiability is needed, with voters able to ensure that the tallying process, not just the recording of their ballot, was performed correctly. We call that “true verifiability.” Others have called this concept “end-to-end verifiability” or “open-audit.”</p>
+<b>以前听说过“选民可核查”，Helios有什么不同之处?</b>
+<p>许多投票系统声称可由选民核实。我们认为选民的可核查性至关重要，我们支持其他组织努力帮助改进公职选举中使用的投票机。然而，我们认为，需要进行更广泛的核查，选民能够确保计票程序，而不仅仅是选票的记录得到正确执行。我们称之为“真正的可验证性”。其他人将这一概念称为“端到端的可验证”或“开放审计”</p></div>
+
+<div class="row">&nbsp;</div>
+
+<div class="row">
+<b>我在Helios上进行的投票有多私密?</b>
+<p>Helios非常注意保护您投票的机密性。您的投票在发送到服务器之前就在浏览器中进行了加密。即使在较旧的浏览器上，您的投票也会在登录Helios之前进行加密。在所有情况下，您的投票只以加密的形式存储在数据库中。Helios然后使用高级加密技术将所有加密的投票合并为加密的计票，只有计票被解密。这意味着您的选票永远不会被单独解密。为了提供最高级别的隐私，Helios允许选举管理员指定多个受托人。所有受托人都必须参与解密，这进一步确保只解密计票，而不解密个人投票</p></div>
+
+<div class="row">&nbsp;</div>
+
+<div class="row">
+<b>Helios选票追踪中心有什么特殊之处?</b>
+<p>一个典型的跟踪号，比如说装运包裹时，或多或少是一个随机数：它只表示包裹上的标签。可以想象，你们的包裹到达了那个里，追踪号码完好无损，但里面的东西被破坏了。在数字世界中，我们能够生成一种特殊的跟踪号码，它绝非随机的：它是您投票加密的指纹。因此，如果您的选票跟踪程序一直跟踪到计票结果，您就知道您的选票不仅进入计票结果中，您还知道它在过程中没有被篡改</p></div>
+
+<div class="row">&nbsp;</div>
+
+<div class="row">
+<b>Helios是唯一一个支持这种级别验证能力的系统吗?</b>
+  <p>不, 还有很多其他的系统. <a href="http://scantegrity.org">Scantegrity</a>, <a href="http://www.pretavoter.com/">Pret-a-Voter</a>, <a href="https://www.usenix.org/conference/evtwote13/workshop-program/presentation/bell">STARVote</a>, Wombat Voting, 所有这些都在基于纸张的投票系统中提供了真正的可验证性。我们喜欢这些系统，我们也喜欢这些系统背后的人。VoteHere，一家已经倒闭的公司，也是这一领域的先驱。Helios系统包含了许多创新，专注于为在线选举提供真正的可验证性，以帮助每个人体验这项突破性的技术。但我们并不是一枝独秀。</p>
 </div>
 
 <div class="row">&nbsp;</div>
 
 <div class="row">
-<b>How secret is my vote on Helios?</b>
-<p>Helios takes great care to protect the secrecy of your vote. Your vote is encrypted inside your browser before it is even sent to the server. Even on older browsers, your vote is encrypted before you log into Helios. In all cases, your vote is stored in the database only in encrypted form. Helios then uses advanced cryptographic techniques to combine all of the encrypted votes into an encrypted tally, and only the tally is decrypted. This means that your ballot is never individually decrypted. To provide for the highest level of privacy, Helios lets election administrators designate multiple trustees. All trustees must be involved in decryption, which further ensures that only the tally, never the individual votes, are decrypted.</p>
-</div>
+<b>我们应该开始使用Helios进行公职选举吗？比如2016年美国总统大选?</b>
+<p>不，你不应该。当人们预计不会有大规模欺诈或胁迫选民的企图时，网上选举是合适的。对于一些选举，特别是美国联邦和州选举，利害关系太大，我们建议不要通过互联网获取选票。这与Helios本身无关：我们只是不相信人们的家用电脑足够安全，能够抵御重大攻击</p>
 
-<div class="row">&nbsp;</div>
-
-<div class="row">
-<b>What's so special about the Helios Ballot Tracker?</b>
-<p>A typical tracking number, say for shipping a package, is more or less a random number: it means nothing other than the label on your package. It’s conceivable that your package gets there, tracking number intact, but its contents destroyed. In the digital world, we’re able to produce a special kind of tracking number that is far from random: it is a fingerprint of the encryption of your vote. So, if your ballot tracker makes it all the way to the tally, you know that not only did your ballot make it into the tally, you also know that it wasn’t tampered with in the process.</p>
-</div>
-
-<div class="row">&nbsp;</div>
-
-<div class="row">
-<b>Is Helios the only system that provides this level of verifiability?</b>
-  <p>No, there are other systems. <a href="http://scantegrity.org">Scantegrity</a>, <a href="http://www.pretavoter.com/">Pret-a-Voter</a>, <a href="https://www.usenix.org/conference/evtwote13/workshop-program/presentation/bell">STARVote</a>, Wombat Voting, all provide true verifiability in paper-based voting systems. We like those systems, and we like the people behind those systems. VoteHere, a company that has since folded, was a pioneer in this area, too. The Helios System packs a number of innovations focused on enabling true verifiability for online elections to help everyone get a taste if this groundbreaking technology. But we are not the only game in town.</p>
-</div>
-
-<div class="row">&nbsp;</div>
-
-<div class="row">
-<b>Should we start using Helios for public-office elections? Maybe US President 2016?</b>
-<p>No, you should not. Online elections are appropriate when one does not expect a large attempt at defrauding or coercing voters. For some elections, notably US Federal and State elections, the stakes are too high, and we recommend against capturing votes over the Internet. This has nothing to do with Helios itself: we just don’t trust that people’s home computers are secure enough to withstand significant attacks.</p>
-
-<p>If you’d like to use a truly verifiable voting system for your public-office election, we recommend an in-person election. Helios could be adapted to the in-person, precinct voting setting, but we have not done this work yet, and we intend to focus on online elections first.</p>
-</div>
+<p>如果你想在你的公职选举中使用真正可核查的投票系统，我们建议你进行亲自选举。Helios可以适应亲自参加选区投票的环境，但我们还没有完成这项工作，我们打算首先关注在线选举</p></div>
 
 
 </div>

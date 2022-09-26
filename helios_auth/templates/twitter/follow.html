@@ -1,15 +1,15 @@
 {% extends TEMPLATE_BASE %}
 
 {% block header %}
-<h2>{{ settings.SITE_TITLE }} &mdash; Twitter Follow?</h2>
+<h2>{{ settings.SITE_TITLE }} &mdash; 关注Twitter?</h2>
 {% endblock %}
 
 
 {% block content %}
 
 <div style="font-size: 1.2em;">
-We recommend that you follow <b>@{{user_to_follow}}</b>.<br /><br />
-That way, {{reason_to_follow}}. We will not abuse of this friendship: only messages pertinent to you will be sent to you directly, and general updates happen only sporadically.
+我们推荐你关注 <b>@{{user_to_follow}}</b>.<br /><br />
+因为{{reason_to_follow}}. 我们不会滥用这种友谊：只有与您相关的消息才会直接发送给您，一般更新只是偶尔发生.
 </div>
 <br /><br />
 <form method="post" action="">

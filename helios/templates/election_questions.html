@@ -1,6 +1,6 @@
 {% extends "helios/templates/cryptobase.html" %}
 
-{% block title %}{{election.name}}的选项{% endblock %}
+{% block title %}{{election.name}} - 选项{% endblock %}
 {% block content %}
   <h3 class="title">{{election.name}} &mdash; 选项 <span style="font-size:0.7em;">[<a href="{% url "election@view" election.uuid %}">返回选举详情页</a>]</span></h3>
 

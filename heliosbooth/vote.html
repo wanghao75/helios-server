@@ -32,7 +32,7 @@
 <div id="wrapper">
 <div id="banner" class="edge">
   <div style="text-align:center; width: 100%;">Helios Voting Booth
-      <div style="float: right; margin-right: 10px; font-size: 0.8em;"><span><a href="javascript:BOOTH.exit();">exit</a></span></div>
+      <div style="float: right; margin-right: 10px; font-size: 0.8em;"><span><a href="javascript:BOOTH.exit();">退出</a></span></div>
   </div>
 </div>
 <div id="content">
@@ -603,24 +603,24 @@ BOOTH.do_done = function() {
   <div id="progress_div" style="display:none">
       <table>
           <tr>
-              <td id="progress_1">(1) Select</td>
-              <td id="progress_2">(2) Review</td>
-              <td id="progress_3">(3) Submit</td>
+              <td id="progress_1">(1) 选择</td>
+              <td id="progress_2">(2) 查看</td>
+              <td id="progress_3">(3) 提交</td>
           </tr>
       </table>
   </div>
   <div id="election_div" class="panel">
-    <h3>Checking capabilities and loading election booth...</h3>
-    <div align="center"><img src="loading.gif" /><br />This may take up to 10 seconds</div>
+    <h3>检查能力以及加载选举...</h3>
+    <div align="center"><img src="loading.gif" /><br />这可能需要10秒钟</div>
   </div>
 
   <div id="error_div" class="panel" style="display: none;">
-    <h3>There's a problem</h3>
+    <h3>此处报错</h3>
     <p>
-      It appears that your browser does not have Java enabled. Helios needs Java to perform encryption within the browser.
+      您的浏览器似乎未启用Java,Helios需要Java在浏览器内执行加密.
     </p>
     <p>
-      You may be able to install Java by visiting <a target="_new" href="http://java.com">java.com</a>.
+      你需要去 <a target="_new" href="http://java.com">Java官网</a>查看并安装.
     </p>
   </div>
 
@@ -628,14 +628,14 @@ BOOTH.do_done = function() {
   </div>
 
   <div id="processing_div" class="panel" style="display:none;">
-      <h3 align="center">Processing....</h3>
+      <h3 align="center">处理中...</h3>
   </div>
 
   <div id="encrypting_div" class="panel" style="display:none;">
-      <h3 align="center">Helios is now encrypting your ballot<br />
+      <h3 align="center">Helios正在加密你的选票<br />
           <img src="encrypting.gif" /> <span style="font-size:0.7em; display:none;" id="percent_done_container">(<span id="percent_done">0</span>%)</span></h3>
 
-      <p align="center"><b>This may take up to two minutes.</b>
+      <p align="center"><b>这可能需要2分钟.</b>
   </div>
 
   <div id="seal_div" class="panel">

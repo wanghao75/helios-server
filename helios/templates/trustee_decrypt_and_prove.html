@@ -131,75 +131,74 @@ function reset() {
 }
 
 </script>
-  <h2 class="title">Trustee {{trustee.name}} &mdash; Decrypt Result for {{election.name}}</h2>
+  <h2 class="title">受托人 {{trustee.name}} &mdash; 解密{{election.name}}的结果</h2>
 
 <p>
-    <b>Trustee:</b> <tt>{{trustee.email}}</tt><br />
-    <b>Public Key Fingerprint:</b> <tt>{{trustee.public_key_hash}}</tt><br />
-    <b>Encrypted Tally Fingerprint:</b> <tt>{{election.encrypted_tally_hash}}</tt>
+    <b>受托人:</b> <tt>{{trustee.email}}</tt><br />
+    <b>公钥验证码:</b> <tt>{{trustee.public_key_hash}}</tt><br />
+    <b>加密计数验证码:</b> <tt>{{election.encrypted_tally_hash}}</tt>
 </p>
 
     <p>
-      The encrypted tally for your election has been computed.<br />
-      Now it's time to compute and submit your partial decryption.
+      选举加密计数已计算完毕<br/>
+      现在是时候计算并提交部分解密密钥了.
     </p>
 
     <p>
-      This process is performed in two steps.<br /><br />
-      <u>First</u>, your secret key is used to decrypt the tally <em>inside</em> your browser, without connecting to the network.<br />
-      You can choose to take your browser "offline" for this step, if you'd like.<br /><br />
-      <u>Second</u>, once your decryption factors have been computed, your browser will need to be "online" to submit them to the server.<br />
-      If you'd like, you can compute your decryption factors, copy them to your clipboard, restart your browser, and<br />
-      skip to the second step so that your browser is never online when you enter your secret key.
+      此过程分为两个步骤.<br /><br />
+      <u>第一</u>, 你的密钥用于解密浏览器内的计数，而无需连接到网络.<br />
+      在此过程中，如果你愿意的话，你可以保持你的浏览器处于离线的状态.<br /><br />
+      <u>第二</u>, 一旦计算出你的解密因子, 你的浏览器需要保持在线状态，以便于提交解密因子到服务器端.<br />
+      如果愿意，您可以计算解密系数，将其复制到剪贴板，重新启动浏览器，然后跳到第二步，这样当您输入密钥时，浏览器就永远不会联机.
     </p>
     
   <div id="sk_section" style="display:none;">
 
       <form onsubmit="return false;">
-          <h3>FIRST STEP: enter your secret key</h3>
+          <h3>第一步: 输入密钥</h3>
           <textarea id="sk_textarea" cols="60" rows="5" style="height: 25em;"></textarea>
       </form>
       <p id="tally_section">
-          <button onclick="do_tally();">Generate partial decryption</button>
+          <button onclick="do_tally();">生成部分解密密钥</button>
       </p>
 
       <p id="skip_to_second_step_instructions">
-        <a href="javascript:skip_to_second_step();">skip to the second step</a><br />
-        (you need to have already computed your decryption factors.)
+        <a href="javascript:skip_to_second_step();">跳到第二部</a><br />
+        (已经计算了解密因子.)
       </p>
   </div>
   
   <div id="waiting_div">
-      Generating partial decryption factors and proofs...<br />
+      生成部分解密因子和证明...<br />
       <img src="/static/helios/loading.gif" />
   </div>
 
   <div id="waiting_submit_div">
-      Submitting and checking your decryption factors and proofs...<br />
+      提交并检查你的解密因子和证明...<br />
       <img src="/static/helios/loading.gif" />
   </div>
   
   <div id="result_div">
-      <h3>SECOND STEP: upload your partial decryption</h3>
+      <h3>第二步: 上传部分解密密钥</h3>
       <p id="first-step-success" style="display: none;">
-          Your partial decryption factors and proofs have been generated below.<br />
-          Your secret key has been cleared from memory.<br />
-          When you're ready, you can submit this result to the server.
+          你的部分解密因子和证明已经在下方生成.<br />
+          你的密钥已从内存中清除.<br />
+          当你准备就绪，则可以将其上传到服务器.
       </p>
-      Your partial decryption:<br />
+      你的部分解密密钥:<br />
       <p>
           <textarea id="result_textarea" cols="60" rows="5" wrap="soft" style="height: 25em;"></textarea>
-          <button onclick="submit_result();">Upload decryption factors to server</button>
+          <button onclick="submit_result();">上传解密因子到服务器r</button>
       </p>
-      <p><a href="javascript:reset()">reset and restart decryption process</a></p>
+      <p><a href="javascript:reset()">重置并重新开始解密过程</a></p>
   </div>
   
   <div id="done_div">
-      Done! <a href="{% url "election@view" election.uuid %}">Back to election</a>
+      Done! <a href="{% url "election@view" election.uuid %}">返回选举详情页</a>
   </div>
   
   <div id="error_div">
-      Error: your secret key was likely incorrect.
+      错误：你的密钥似乎不正确.
   </div>
 
   <div id="applet_div">

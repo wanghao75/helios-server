@@ -36,7 +36,7 @@
       <li class="name">
         <h1><a href="/"><img src="/static/tinylogo.png"></a></h1>
       </li>
-      <li class="toggle-topbar menu-icon"><a href="#" onclick="$('nav').toggleClass('expanded'); return false;"><span>Menu</span></a>
+      <li class="toggle-topbar menu-icon"><a href="#" onclick="$('nav').toggleClass('expanded'); return false;"><span>选项</span></a>
       </li>
     </ul>
  
@@ -44,11 +44,11 @@
       <!-- Right Nav Section -->
       <ul class="right">
 	{% if user and user.admin_p %}
-	<li><a href="{% url "stats@home" %}">Admin</a></li>
+	<li><a href="{% url "stats@home" %}">管理</a></li>
 	<li class="divider"></li>
 	{% endif %}
 	{% if not settings.MASTER_HELIOS %}
-	<li><a href="http://heliosvoting.org">About Helios</a></li>
+	<li><a href="http://heliosvoting.org">关于Helios</a></li>
 	{% endif %}
       </ul>
       
@@ -56,18 +56,18 @@
         <li><a href="/">{{settings.SITE_TITLE}}</a></li>
 	{% if settings.MASTER_HELIOS %}
         <li class="divider"></li>
-        <li class="active"><a href="/about">About</a></li>
+        <li class="active"><a href="/about">关于</a></li>
         <li class="divider"></li>
-        <li><a target="_new" href="https://github.com/benadida/helios-server">Code</a></li>
+        <li><a target="_new" href="https://github.com/benadida/helios-server">代码</a></li>
         <li class="divider"></li>
         <li><a href="/docs">Docs</a></li>
         <li class="divider"></li>
         <li><a href="/faq">FAQ</a></li>
         <li class="divider"></li>
-        <li><a href="/privacy">Privacy</a></li>
+        <li><a href="/privacy">隐私</a></li>
 	{% endif %}
         <li class="divider"></li>
-        <li><a href="mailto:{{settings.HELP_EMAIL_ADDRESS}}">Help!</a></li>
+        <li><a href="mailto:{{settings.HELP_EMAIL_ADDRESS}}">帮助!</a></li>
       </ul>
     </section>
   </nav>
@@ -90,15 +90,15 @@
     </span>-->
     {% if user %}
     logged in as <b>{{user.display_html_small|safe}}</b>&nbsp;&nbsp;
-    <a class="tiny button" href="{% url "auth@logout" %}?return_url={{CURRENT_URL}}">logout</a><br />
+    <a class="tiny button" href="{% url "auth@logout" %}?return_url={{CURRENT_URL}}">登出</a><br />
     {% else %}
     {% if voter %}
-    You are signed in as voter <u>{% if voter.alias %}{{voter.alias}}{% else %}{{voter.name}}{% endif %}</u> in election <u>{{voter.election.name}}</u>. [<a href="{{settings.SECURE_URL_HOST}}{% url "auth@logout" %}?return_url={{CURRENT_URL}}">sign out</a>]
+    You are signed in as voter <u>{% if voter.alias %}{{voter.alias}}{% else %}{{voter.name}}{% endif %}</u> in election <u>{{voter.election.name}}</u>. [<a href="{{settings.SECURE_URL_HOST}}{% url "auth@logout" %}?return_url={{CURRENT_URL}}">退出</a>]
     {% else %}
 {% if settings.SHOW_LOGIN_OPTIONS %}
-    not logged in. <a class="tiny button" href="{{settings.SECURE_URL_HOST}}{% url "auth@index" %}?return_url={{CURRENT_URL}}">log in</a>
+    暂未登录 <a class="tiny button" href="{{settings.SECURE_URL_HOST}}{% url "auth@index" %}?return_url={{CURRENT_URL}}">登录</a>
 {% else %}
-powered by <a href="http://heliosvoting.org">Helios Voting</a>.
+由<a href="http://heliosvoting.org">Helios Voting</a>提供支持.
 {% endif %}
     {% endif %}
     {% endif %}

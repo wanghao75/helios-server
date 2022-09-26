@@ -1,14 +1,14 @@
 {% extends TEMPLATE_BASE %}
 
 {% block content %}
-  <h2 class="title">{{election.name}} &mdash; Bulk Upload Voters <span style="font-size:0.7em;">[<a href="{% url "election@view" election.uuid %}">back to election</a>]</span></h2>
+  <h2 class="title">{{election.name}} &mdash; 批量上传选民 <span style="font-size:0.7em;">[<a href="{% url "election@view" election.uuid %}">返回选举详情页</a>]</span></h2>
 
 <form method="post" action="" id="upload_form" enctype="multipart/form-data">
 <p>
-    If you would like to specify your list of voters by name and email address,<br />
-    you can bulk upload a list of such voters here.<br /><br />
+    如果您想按姓名和电子邮件地址指定选民名单，<br/>
+    你可以在这里批量上传此类选民的名单.<br /><br />
 
-    Please prepare a text file of comma-separated values with the fields:
+    请准备一个如下用逗号分隔的值和字段组成的文本文件:
 </p>
 <pre>
    password,&lt;unique_id&gt;,&lt;email&gt,&lt;full name&gt;
@@ -30,7 +30,7 @@ For example:
   </pre> 
 
   <p>
-    The easiest way to prepare such a file is to use a spreadsheet program and to export as "CSV".
+    准备此类文件的最简单方法是使用电子表格程序并导出为“CSV”.
   </p>
   {% if error %}
   <div style="color: red;">{{error}}</div>
@@ -45,8 +45,8 @@ For example:
 </div>
 
 <div id="done" style="display:none;">
-  OK, done uploading.<br />
-  You can now <a href="./manage">view the list of voters</a>.
+  OK, 上传完成.<br />
+  现在你可以 <a href="./manage">查看选民列表</a>.
 </div>
 
 {% endblock %}

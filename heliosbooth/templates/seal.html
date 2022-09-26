@@ -18,10 +18,10 @@ Question #{$T.question$index + 1}: {$T.question.short_name}<br>
 {#/for}
 </div>
 
-<p>Your ballot tracker is <b><tt style="font-size: 1.5em; word-break: break-all;">{$T.encrypted_vote_hash}</tt></b>.
+<p>你的选票追踪器： <b><tt style="font-size: 1.5em; word-break: break-all;">{$T.encrypted_vote_hash}</tt></b>.
 
 <p>  
-  <button id="proceed_button" onclick="BOOTH.cast_ballot();">Submit this Vote</button><span id="loading_div"><img src="loading.gif" id="proceed_loading_img" /></span><br />
+  <button id="proceed_button" onclick="BOOTH.cast_ballot();">提交投票</button><span id="loading_div"><img src="loading.gif" id="proceed_loading_img" /></span><br />
 </p>
 
 
@@ -35,15 +35,15 @@ Question #{$T.question$index + 1}: {$T.question.short_name}<br>
 
 {#if $T.election_metadata.use_advanced_audit_features}
 <div style="background: lightyellow; padding: 10px; border: 1px solid #ddd; max-width: 340px;">
-<h4 style="padding: 0px; margin:0px;"><a onclick="$('#auditbody').slideToggle(250);" href="#">Spoil & Audit</a> <span style="font-size: 0.8em; color: #444">[optional]</span></h4>
+<h4 style="padding: 0px; margin:0px;"><a onclick="$('#auditbody').slideToggle(250);" href="#">破环 & 审计</a> <span style="font-size: 0.8em; color: #444">[optional]</span></h4>
 <div id="auditbody" style="display:none;">
 <p>
-If you choose, you can spoil this ballot and reveal how your choices were encrypted. This is an optional auditing process.
+如果你选择，你可以破坏这张选票，并透露你的选择是如何加密的。这是一个可选的审核过程.
 </p>
 <p>
-You will then be guided to re-encrypt your choices for final casting.
+然后，为了最终投票你将被引导重新加密你的选择.
 </p>
-<button onclick="BOOTH.audit_ballot();" class="pretty">Spoil &amp; Audit</button>
+<button onclick="BOOTH.audit_ballot();" class="pretty">破环 & 审计</button>
 </p>
 </div>
 </div>

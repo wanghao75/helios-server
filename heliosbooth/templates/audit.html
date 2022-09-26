@@ -1,18 +1,18 @@
 
-<h3>Your audited ballot</h3>
+<h3>你的已审计的选票</h3>
 
 <p>
-<b><u>IMPORTANT</u></b>: this ballot, now that it has been audited, <em>will not be tallied</em>.<br />
-To cast a ballot, you must click the "Back to Voting" button below, re-encrypt it, and choose "cast" instead of "audit."
+<b><u>注意</u></b>: 此选票已被审计, <em>将无法被计算票数</em>.<br />
+为了投出这张选票，你必须点击下方的“返回选举”按钮，并且对选票进行重新加密，然后点击“投票”而不是“审计”.
 </p>
 
 <p>
-<b>Why?</b> Helios prevents you from auditing and casting the same ballot to provide you with some protection against coercion.
+<b>为什么?</b> Helios阻止你审核和投同一张选票，以保护你免受胁迫.
 </p>
 
 <p>
-<b>Now what?</b> <a onclick="$('#audit_trail').select(); return false;" href="#">Select your ballot audit info</a>, copy it to your clipboard, then use the <a target="_blank" href="single-ballot-verify.html?election_url={$T.election_url}">ballot verifier</a> to verify it.<br />
-Once you're satisfied, click the "back to voting" button to re-encrypt and cast your ballot.
+<b>接下来呢?</b> <a onclick="$('#audit_trail').select(); return false;" href="#">选择您的选票审核信息</a>, 复制并使用 <a target="_blank" href="single-ballot-verify.html?election_url={$T.election_url}">选票验证器</a> 进行验证.<br />
+就绪后，单击“返回投票”按钮重新加密并投出您的选票.
 </p>
 
 <form action="#">
@@ -20,14 +20,14 @@ Once you're satisfied, click the "back to voting" button to re-encrypt and cast 
 {$T.audit_trail}
 </textarea>
 <br /><br />
-Before going back to voting,<br />
-you can post this audited ballot to the Helios tracking center so that others might double-check the verification of this ballot.
+在返回投票前,<br />
+你可以把这张经过审核的选票上传到Helios跟踪中心，以便其他人可以再次检查这张选票的验证情况.
 <br /><br />
-<b>Even if you post your audited ballot, you must go back to voting and choose "cast" if you want your vote to count.</b>
+<b>即使你发布了经审核的选票，如果你想计算投票数，你也必须回到投票状态并选择“投票”.</b>
 <br /><br />
-<button onclick="BOOTH.reset_ciphertexts();BOOTH.seal_ballot(); return false;" class="pretty">back to voting</button>
+<button onclick="BOOTH.reset_ciphertexts();BOOTH.seal_ballot(); return false;" class="pretty">返回选举详情页</button>
 &nbsp; &nbsp;&nbsp;
-<button onclick="$(this).attr('disabled', 'disabled');BOOTH.post_audited_ballot(); return false;" id="post_audited_ballot_button" class="pretty" style="font-size:0.8em;">post audited ballot to tracking center</button>
+<button onclick="$(this).attr('disabled', 'disabled');BOOTH.post_audited_ballot(); return false;" id="post_audited_ballot_button" class="pretty" style="font-size:0.8em;">上传已审计选票到追踪中心</button>
 
 </form>
 
