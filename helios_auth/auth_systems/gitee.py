@@ -22,7 +22,7 @@ def get_flow(redirect_url=None):
     client_secret=settings.GITEE_CLIENT_SECRET,
     scope=['user_info'],
     auth_uri="https://gitee.com/oauth/authorize",
-    token_uri="https://gitee.com/oauth/access_token",
+    token_uri="https://gitee.com/oauth/token",
     redirect_uri=redirect_url,
   )
 
