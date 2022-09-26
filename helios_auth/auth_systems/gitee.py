@@ -20,7 +20,7 @@ def get_flow(redirect_url=None):
   return OAuth2WebServerFlow(
     client_id=settings.GITEE_CLIENT_ID,
     client_secret=settings.GITEE_CLIENT_SECRET,
-    scope='read:user user:email',
+    scope='emails',
     auth_uri="https://gitee.com/oauth/authorize",
     token_uri="https://gitee.com/oauth/access_token",
     redirect_uri=redirect_url,
