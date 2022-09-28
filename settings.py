@@ -44,6 +44,10 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'helios',
         'CONN_MAX_AGE': 600,
+        'HOST': get_from_env("DB_HOST", ""),
+        'USER': get_from_env("DB_USER", ""),
+        'PASSWORD': get_from_env("DB_PASSWORD", ""),
+        'PORT': get_from_env("DB_PORT", ""),
     },
 }
 
