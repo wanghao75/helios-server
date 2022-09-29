@@ -14,7 +14,7 @@ def get_from_env(var, default):
     else:
         return default
 
-DEBUG = (get_from_env('DEBUG', '1') == '1')
+DEBUG = (get_from_env('DEBUG', '0') == '1')
 
 # add admins of the form: 
 #    ('Ben Adida', 'ben@adida.net'),
@@ -170,13 +170,14 @@ INSTALLED_APPS = (
     'server_ui',
 )
 
-ANYMAIL = {
-    "MAILGUN_API_KEY": get_from_env('MAILGUN_API_KEY', None),
-}
+# ANYMAIL = {
+#     "MAILGUN_API_KEY": get_from_env('MAILGUN_API_KEY', None),
+# }
+#
+# if ANYMAIL["MAILGUN_API_KEY"]:
+#     EMAIL_BACKEND = "anymail.backends.mailgun.EmailBackend"
 
-if ANYMAIL["MAILGUN_API_KEY"]:
-    EMAIL_BACKEND = "anymail.backends.mailgun.EmailBackend"
-
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 ##
 ## HELIOS
 ##
@@ -186,12 +187,6 @@ MEDIA_ROOT = ROOT_PATH + "media/"
 
 # a relative path where voter upload files are stored
 VOTER_UPLOAD_REL_PATH = "voters/%Y/%m/%d"
-
-
-# Change your email settings
-DEFAULT_FROM_EMAIL = get_from_env('DEFAULT_FROM_EMAIL', 'shalldows@163.com')
-DEFAULT_FROM_NAME = get_from_env('DEFAULT_FROM_NAME', 'bot for Helios')
-SERVER_EMAIL = '%s <%s>' % (DEFAULT_FROM_NAME, DEFAULT_FROM_EMAIL)
 
 LOGIN_URL = '/auth/'
 LOGOUT_ON_CONFIRMATION = True
@@ -280,11 +275,17 @@ GITEE_CLIENT_SECRET = get_from_env('GITEE_CLIENT_SECRET', '')
 
 # email server
 #EMAIL_HOST = get_from_env('EMAIL_HOST', 'localhost')
-EMAIL_HOST = get_from_env('EMAIL_HOST', 'smtp.163.com')
-EMAIL_PORT = int(get_from_env('EMAIL_PORT', "25"))
+EMAIL_HOST = get_from_env('EMAIL_HOST', '')
+EMAIL_PORT = int(get_from_env('EMAIL_PORT', ""))
 EMAIL_HOST_USER = get_from_env('EMAIL_HOST_USER', '')
 EMAIL_HOST_PASSWORD = get_from_env('EMAIL_HOST_PASSWORD', '')
-EMAIL_USE_TLS = (get_from_env('EMAIL_USE_TLS', '0') == '1')
+EMAIL_USE_TLS = (get_from_env('EMAIL_USE_TLS', '1') == '1')
+EMAIL_USE_SSL = False
+
+# Change your email settings
+DEFAULT_FROM_EMAIL = get_from_env('DEFAULT_FROM_EMAIL', EMAIL_HOST_USER)
+DEFAULT_FROM_NAME = get_from_env('DEFAULT_FROM_NAME', 'bot for Helios')
+SERVER_EMAIL = '%s <%s>' % (DEFAULT_FROM_NAME, DEFAULT_FROM_EMAIL)
 
 # to use AWS Simple Email Service
 # in which case environment should contain
