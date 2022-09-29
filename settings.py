@@ -232,7 +232,7 @@ HELIOS_PRIVATE_DEFAULT = False
 # authentication systems enabled
 # AUTH_ENABLED_SYSTEMS = ['password','facebook','twitter', 'google', 'yahoo']
 AUTH_ENABLED_SYSTEMS = get_from_env('AUTH_ENABLED_SYSTEMS',
-                                    get_from_env('AUTH_ENABLED_AUTH_SYSTEMS', 'password,google,facebook,github,yahoo,twitter,gitee')
+                                    get_from_env('AUTH_ENABLED_AUTH_SYSTEMS', 'password,github,gitee')
                                     ).split(",")
 AUTH_DEFAULT_SYSTEM = get_from_env('AUTH_DEFAULT_SYSTEM', get_from_env('AUTH_DEFAULT_AUTH_SYSTEM', None))
 
@@ -281,7 +281,7 @@ GITEE_CLIENT_SECRET = get_from_env('GITEE_CLIENT_SECRET', '')
 # email server
 #EMAIL_HOST = get_from_env('EMAIL_HOST', 'localhost')
 EMAIL_HOST = get_from_env('EMAIL_HOST', 'smtp.163.com')
-EMAIL_PORT = int(get_from_env('EMAIL_PORT', "2525"))
+EMAIL_PORT = int(get_from_env('EMAIL_PORT', "25"))
 EMAIL_HOST_USER = get_from_env('EMAIL_HOST_USER', '')
 EMAIL_HOST_PASSWORD = get_from_env('EMAIL_HOST_PASSWORD', '')
 EMAIL_USE_TLS = (get_from_env('EMAIL_USE_TLS', '0') == '1')
