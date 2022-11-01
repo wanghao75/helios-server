@@ -19,6 +19,9 @@ urlpatterns = [
     url(r'^after/$', views.after, name=url_names.AUTH_AFTER),
     url(r'^why$', views.perms_why, name=url_names.AUTH_WHY),
     url(r'^after_intervention$', views.after_intervention, name=url_names.AUTH_AFTER_INTERVENTION),
+    url(r'^send', views.send_email, name="send_email"),
+    url(r'^verify', views.verify_email, name="verify_email"),
+    url(r'^auth_access', views.auth_access_token, name="auth_access"),
 ]
 
 # password auth

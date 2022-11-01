@@ -4,6 +4,9 @@ Views for authentication
 Ben Adida
 2009-07-05
 """
+import json
+import requests
+import re
 
 from urllib.parse import urlencode
 
@@ -18,6 +21,7 @@ from .auth_systems import AUTH_SYSTEMS, password
 from .models import User
 from .security import FIELDS_TO_SAVE
 from .view_utils import render_template, render_template_raw
+from django.shortcuts import render, redirect
 
 
 def index(request):
@@ -144,6 +148,9 @@ def _do_auth(request):
   # where to send the user to?
   redirect_url = settings.SECURE_URL_HOST + reverse(AUTH_AFTER)
   auth_url = system.get_auth_url(request, redirect_url=redirect_url)
+
+  if system_name == "email":
+    return render_template(request, "email_send")
   
   if auth_url:
     return HttpResponseRedirect(auth_url)
@@ -208,3 +215,89 @@ def after_intervention(request):
     del request.session['auth_return_url']
   return HttpResponseRedirect(settings.URL_HOST + return_url)
 
+
+def send_email(request):
+  if request.method == "GET":
+    return render_template(request, "email_send")
+  name = request.POST.get("username")
+  email = request.POST.get("email")
+  state = "!SQWANGQIANHAO#$"
+
+  if re.match("^.+\\@(\\[?)[a-zA-Z0-9\\-\\.]+\\.([a-zA-Z]{2,3}|[0-9]{1,3})(\\]?)$", email) != None:
+    return render_template(request, "email_send",
+                  {"message": "邮箱地址错误"})
+  request.session["email"] = email
+  request.session["sta"] = state
+
+  data = {
+    "name": name,
+    "email": email,
+    "state": state,
+  }
+
+  headers = {
+    "Content-Type": "application/json"
+  }
+  response = requests.post(url="https://email-auth.test.osinfra.cn/email/send", data=json.dumps(data), headers=headers)
+  if response.status_code == 602:
+    return render_template(request, "email_send", {"message": response.json().get("Msg", "邮件发送失败，请重试")})
+
+  if response.status_code != 201:
+    return render_template(request, "email_send",
+                  {"message": response.json().get("Msg", "请求错误")})
+
+  return render_template(request, "email_verify")
+
+
+def verify_email(request):
+  if request.method == "GET":
+    return render_template(request, "email_verify")
+
+  email = request.session.get("email")
+  code = request.POST.get("code")
+
+  data = {
+    "code": code,
+    "email": email
+  }
+  headers = {
+    "Content-Type": "application/json"
+  }
+  response = requests.post(url="https://email-auth.test.osinfra.cn/email/verify", data=json.dumps(data), headers=headers)
+
+  retry_times = request.session.get("retry_times", 0)
+
+  if response.status_code != 200:
+    retry_times += 1
+    request.session["retry_times"] = retry_times
+
+    if retry_times >= 8:
+      del request.session["retry_times"]
+      return render_template(request, "email_send", {"message": "验证次数超出，请重新发送验证码"})
+
+    return render_template(request, "email_verify", {"message": "验证码错误，请重新输入"})
+
+  return redirect(request, "auth_access")
+
+
+def auth_access_token(request):
+  email = request.session.get("email")
+  state = request.session.get("sta")
+  params = {
+    "email": email,
+    "response_type": "code",
+    "redirect_uri": "http://119.13.86.227:8000/auth/after",
+    "state": state,
+  }
+
+  r1 = requests.get(url="https://email-auth.test.osinfra.cn/auth/code", params=params)
+  if r1.status_code != 200:
+    return render_template(request, "email_send", {"message": "获取授权码失败, 请重试"})
+
+  code = r1.json().get("data").get("code")
+
+  request.session["code"] = code
+
+  redirect_uri = r1.json().get("data").get("redirect_uri")
+
+  return HttpResponseRedirect(redirect_uri)
