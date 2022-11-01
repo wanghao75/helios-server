@@ -41,7 +41,7 @@ def get_user_info_after_auth(request):
   params2 = {
     "code": code,
     "grant_type": "authorization_code",
-    "redirect_uri": "https://helios-voting.osinfra.cn/auth/after",
+    "redirect_uri": "https://helios-voting.test.osinfra.cn/auth/after",
   }
 
   r = requests.get(url="https://email-auth.test.osinfra.cn/auth/access", params=params2)
