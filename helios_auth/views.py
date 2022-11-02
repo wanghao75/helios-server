@@ -150,7 +150,7 @@ def _do_auth(request):
   auth_url = system.get_auth_url(request, redirect_url=redirect_url)
 
   if system_name == "email":
-    return render_template(request, "email_send")
+    return HttpResponseRedirect("https://helios-voting.osinfra.cn/auth/send")
   
   if auth_url:
     return HttpResponseRedirect(auth_url)
@@ -286,7 +286,7 @@ def auth_access_token(request):
   params = {
     "email": email,
     "response_type": "code",
-    "redirect_uri": "http://119.13.86.227:8000/auth/after",
+    "redirect_uri": "https://helios-voting.osinfra.cn/auth/after",
     "state": state,
   }
 
