@@ -223,7 +223,7 @@ def send_email(request):
   email = request.POST.get("email")
   state = "!SQWANGQIANHAO#$"
 
-  if re.match("^.+\\@(\\[?)[a-zA-Z0-9\\-\\.]+\\.([a-zA-Z]{2,3}|[0-9]{1,3})(\\]?)$", email) != None:
+  if re.match("^.+\\@(\\[?)[a-zA-Z0-9\\-\\.]+\\.([a-zA-Z]{2,3}|[0-9]{1,3})(\\]?)$", email) is None:
     return render_template(request, "email_send",
                   {"message": "邮箱地址错误"})
   request.session["email"] = email
