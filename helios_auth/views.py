@@ -277,7 +277,7 @@ def verify_email(request):
 
     return render_template(request, "email_verify", {"message": "验证码错误，请重新输入"})
 
-  return redirect(request, "auth_access")
+  return redirect("auth_access")
 
 
 def auth_access_token(request):
